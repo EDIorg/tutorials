@@ -1,0 +1,444 @@
+Introduction to R
+========================================================
+author: Open source language and environment for analysis, statistics &  visualization
+autosize: true
+
+
+<style>
+.small-code pre code {
+  font-size: 1em;
+.footer {
+    color: red; background: #E8E8E8;
+    position: fixed; top: 90%;
+    text-align:center; width:100%;
+.midcenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+}
+}
+</style>
+
+<img src="fig1_r_intro.png"></img>
+
+<div class="footer" style="margin-top:300px;font-size:100%;">
+Environmental Data Initiative<br />13 June 2017</div>
+
+
+Tutorial goals
+========================================================
+
+- Why is it worthwhile to learn R?
+- Getting ready to work with R in the R Studio environment.
+- Learn very basic concepts of R.
+- Learn about R resources.
+- Being able to conduct exercises on your own or start your own project.
+- Together with our tutorials on GitHub, building EML with R and Pasta Rest API prepare you for catalogging your data in EDI.
+
+
+Why is it worthwhile to learn R?
+========================================================
+
+- User friendly data analysis and statistics.
+- Excellent tool for visualization.
+- Used in research and data science community.
+- Free, open source scripting language.
+- CRAN: Comprehensive R Archive Network.
+- Compiles and runs on a wide variety of computer platforms: Windows,  MacOS, Unix, Linux.
+- Extended support network and tools.
+
+
+Examples of R visualization
+========================================================
+class: small-code
+<br />
+Use <span style="font-weight:bold; color:red;">data set "mpg": (provided with R)</span> Fuel economy data from 1999 and 2008 for 38 popular models of car
+```{r echo=FALSE}
+library(tidyverse)
+```
+```{r}
+# list the structure of mpg
+str(mpg)
+```
+
+Examples of R visualization
+========================================================
+title: false
+class: small-code
+```{r}
+# print mpg
+mpg
+```
+
+Examples of R visualization
+========================================================
+title: false
+class: small-code
+```{r}
+# help on mpg
+?mpg
+```
+- manufacturer
+- model:  model name
+- <span style="font-weight:bold; color:red;">displ:  engine displacement, in litres</span>
+- drv:    f = front-wheel drive, r = rear wheel drive, 4 = 4wd
+- cty:    city miles per gallon
+- <span style="font-weight:bold; color:red;">hwy:    highway miles per gallon</span>
+- class:  "type" of car
+
+Examples of R visualization
+========================================================
+title: false
+class: small-code
+
+```{r fig.width=20 , fig.height=8, fig.align='center'}
+ggplot(data = mpg) +
+geom_point(mapping = aes(x=displ,y=hwy),size=8) +
+theme_bw(base_size = 40)
+```
+
+
+Examples of R visualization
+========================================================
+title: false
+class: small-code
+
+```{r fig.width=20 , fig.height=10, fig.align='center'}
+ggplot(data = mpg) +
+geom_point(mapping = aes(x = displ, y = hwy, color = class), size = 8) +
+theme_bw(base_size = 40)
+```
+
+Examples of R visualization
+========================================================
+title: false
+class: small-code
+
+```{r fig.width=20 , fig.height=10, fig.align='center'}
+ggplot(data = mpg) +
+geom_point(mapping = aes(x=displ,y=hwy), size = 8) +
+facet_wrap(~class, nrow = 2) +
+theme_bw(base_size = 40)
+```
+
+
+Examples of R visualization
+========================================================
+title: false
+class: small-code
+
+```{r fig.width=20 , fig.height=12, fig.align='center'}
+ggplot(data = mpg) +
+geom_point(mapping = aes(x=displ,y=hwy, color = manufacturer=="subaru"), size = 8) +
+theme_bw(base_size = 40) +
+facet_wrap(~class, nrow = 2) +
+scale_colour_manual(values=c("#000000", "#FF0000"),name="Subaru") +
+labs(title = "Modify plot labels, title, legend", x = "engine displacement [l]", y = "highway [mpg]") +
+theme(legend.justification=c(1,0), legend.position=c(1,0))
+```
+
+Examples of R visualization
+========================================================
+title: false
+<span style="font-size:small; ">Grossman-Clarke S. et al. 2017. International Journal of Climatology 37(2): 905–917, doi: 10.1002/joc.4748.</span>
+<img src="fig3_r_intro.png"></img>
+
+Examples of R visualization
+========================================================
+title: false
+<span style="font-size:small; ">Grossman-Clarke S. et al. 2017. International Journal of Climatology 37(2): 905–917, doi: 10.1002/joc.4748.</span>
+<img src="fig4_r_intro.png"></img>
+
+Setting up to work with R in the R Studio environment
+========================================================
+
+RStudio is an integrated development environment (IDE) for R.
+
+<span style="font-weight:bold; color:blue;">Three steps for installing RStudio</span>
+
+1. Install R
+2. Install R-Studio
+3. Install R-Packages
+
+Install R
+========================================================
+<br />
+Download the binary setup file for R for your operating system from CRAN: http://cran.r-project.org/:
+
+  - Windows: http://cran.r-project.org/bin/windows/base
+  - Mac : http://cran.r-project.org/bin/macosx/
+
+Open the downloaded file .exe (windows) or .pkg (macosx) and install following instructions
+
+Install R from CRAN: http://cran.r-project.org/
+========================================================
+title: false
+<img src="fig5_r_intro.png"></img>
+
+Install R Studio
+========================================================
+<br />
+Download and install <span style="font-weight:bold; color:blue;">the free Desktop R Studio version</span> from www.rstudio.com here:
+
+http://www.rstudio.com/products/rstudio/download/
+
+   - Choose from Installers for Supported Platforms
+   - Open file and Install
+   
+READY!
+
+OPEN R Studio by clicking on the prompt!
+
+Install R Studio
+========================================================
+title: false
+<img src="fig6_r_intro.png"></img>
+
+Install R Studio
+========================================================
+title: false
+<img src="fig7_r_intro.png"></img>
+
+R Studio Environment
+========================================================
+<img src="fig8_r_intro.png"></img>
+
+
+R Studio Environment - Preferences
+========================================================
+<img src="fig9_r_intro.png"></img>
+
+
+Installing R-Packages in R Studio
+========================================================
+<br />
+<span style="font-weight:bold; color:red;">What is an R-package?</span>
+
+Packages are collections of R functions, example data, and compiled code.
+- Standard set of packages is provided with R installation.
+- Other packages are available for download and installation.
+
+
+Installing R-Packages in R Studio
+========================================================
+<br />
+ 1. Choose CRAN mirror from which to download packages: 
+ 
+ <span style="font-weight:bold; color:blue;">Main menu</span> -> RStudio -> Preferences -> Packages
+ 
+ 2. <span style="font-weight:bold; color:blue;">Main menu</span> -> Tools -> Install packages
+
+Installing R-Packages in R Studio
+========================================================
+title: false
+<img src="fig11_r_intro.png"></img>
+
+Install R-Packages in R Studio
+========================================================
+title: false
+<img src="fig12_r_intro.png"></img>
+
+Install R-Packages in R Studio
+========================================================
+title: false
+<img src="fig10_r_intro.png"></img>
+
+Install R-Packages in R Studio
+========================================================
+title: false
+<img src="fig14_r_intro.png"></img>
+
+Updating R-Packages in R Studio
+========================================================
+<br />
+<span style="font-weight:bold; color:blue;">Main menu</span> -> Tools -> Check for package updates
+
+Updating R-Packages in R Studio
+========================================================
+title: false
+<img src="fig13_r_intro.png"></img>
+
+Using R-Packages in R Studio
+========================================================
+<br />
+<span style="font-weight:bold; color:red;">IMPORTANT!</span>
+
+In order to use a non-standard R package it needs to be <span style="font-weight:bold; color:red;">loaded in each new R session via console</span> or included in a script:
+```{r}
+# load package (use pound key for comments)
+library(ggplot2)
+```
+
+
+Basic elements of R
+========================================================
+- Packages
+- Functions
+- <span style="font-weight:bold; color:blue;">Data structures</span>
+     - Vectors
+     - Matrices
+     - Character Strings
+     - Lists
+     - Data Frames
+     - Classes
+- <span style="font-weight:bold; color:blue;">Variable types</span> (also called modes): numeric, character, logical, integer ... 
+
+Importing data: Example file format "csv"
+========================================================
+class: small-code
+<br />
+```{r}
+tutorial_dat<-read.csv('data1_r_intro.csv')
+```
+
+Read data
+========================================================
+title: false
+class: small-code
+```{r}
+# print structure of data set "tutorial_dat"
+str(tutorial_dat)
+```
+
+Read specific variable of data frame
+========================================================
+class: small-code
+
+<span style="font-weight:bold; color:blue;">data set name$variable name</span>
+
+```{r}
+# print specific variable AirTC_Avg of data set "tutorial_dat"
+tutorial_dat$AirTC_Avg[1:100]
+```
+
+Visualize data
+========================================================
+class: small-code
+```{r fig.width=20 , fig.height=12, fig.align='center'}
+ggplot(data=tutorial_dat) +
+geom_histogram(mapping = aes(x=AirTC_Avg,fill=Rainfall>0)) +
+theme_bw(base_size = 40)
+```
+
+
+Visualize georeferenced plot data
+========================================================
+class: small-code
+```{r}
+field<-read.csv('data2_r_intro.csv')
+```
+```{r echo=FALSE}
+field<-filter(field,NDVI<1.)
+```
+```{r}
+# print structure of data set "field"
+str(field)
+```
+
+Visualize georeferenced plot data
+========================================================
+class: small-code
+```{r fig.width=20 , fig.height=12, fig.align='center'}
+ggplot(data=field) +
+geom_point(mapping = aes(x=Latitude,y=Longitude,color=NDVI), size=6) +
+scale_color_gradient(low="blue", high="yellow") +
+theme_bw(base_size = 40)
+```
+
+Resources
+========================================================
+<br />
+Documentation
+- R-project web page: https://www.r-project.org
+- “An Introduction to R”: https://stat.ethz.ch/R-manual/R-devel/doc/manual/R-intro.html
+
+Resources
+========================================================
+<br />
+Cheat sheets and reference sheets
+- https://www.rstudio.com/resources/cheatsheets/
+- https://cran.r-project.org/doc/contrib/Short-refcard.pdf
+
+Resources
+========================================================
+<br />
+Mailing lists and help pages
+- Google your questions:  rseek.org
+- List of mailing lists: https://www.r-project.org/mail.html
+- R-help: https://stat.ethz.ch/mailman/listinfo/r-help
+- Stackoverflow forum: https://stackoverflow.com/questions/tagged/r
+- R bloggers: https://www.r-bloggers.com
+
+Resources
+========================================================
+<br />
+Free online tutorials
+- “Cookbook for R”: http://www.cookbook-r.com
+- NEON data skills program: Focus is on data lessons, background materials and other resources that support working with large spatio-temporal datasets: http://neondataskills.org/tutorial-series/
+- Data Carpentry "R for data analysis and visualization of Ecological Data": http://www.datacarpentry.org/R-ecology-lesson/index.html
+- Software Carpentry "Programming with R": http://swcarpentry.github.io/swc-releases/2017.02/r-novice-inflammation/
+- R-tutor: http://www.r-tutor.com/r-introduction/
+- NCEAS "R a self learn tutorial": https://www.nceas.ucsb.edu/files/scicomp/Dloads/RProgramming/BestFirstRTutorial.pdf
+
+Resources
+========================================================
+<br />
+Books
+- Free download: “The art of R-programming” by Norman Matloff
+free book, search the internet and find downloadable copies (focuses on programming rather than statistical tools)
+- “R for Data Science” (2016, 1st edition) Hadley Wickham & Garrett Grolemund: Import, tidy, transform, visualize, and model data
+
+Resources
+========================================================
+<br />
+Nice overview is given on the National Center for Ecological Analysis and Synthesis’ webpage: https://www.nceas.ucsb.edu/scicomp/software/r
+
+Thank you for your attention!
+========================================================
+<img src="fig1_r_intro.png"></img>
+
+
+Examples of R visualization
+========================================================
+title: false
+class: small-code
+
+```{r fig.width=20 , fig.height=8, fig.align='center'}
+ggplot(data = mpg) + geom_point(mapping = aes(x=displ,y=hwy),size=8) + geom_smooth(mapping = aes(x=displ,y=hwy)) +
+theme_bw(base_size = 40)
+```
+
+Examples of R visualization
+========================================================
+title: false
+<span style="font-size:small; ">Grossman-Clarke S. et al. 2017. International Journal of Climatology 37(2): 905–917, doi: 10.1002/joc.4748. </span>
+<img src="fig2_r_intro.png"></img>
+
+R Stats Package
+========================================================
+<br />
+```{r}
+# print information on installed packages
+sessionInfo()
+```
+
+R Stats Package
+========================================================
+<br />
+For a complete list of functions, use:
+```{r}
+# print help on package "stat"
+library(help = "stats")
+```
+
+
+Data Analysis
+========================================================
+class: small-code
+```{r}
+# print variable AirTC_Avg of data set "tutorial_dat"
+which(tutorial_dat$AirTC_Avg<(-10.))
+tutorial_dat$AirTC_Avg[546:593]
+tail(tutorial_dat$AirTC_Avg)
+```
