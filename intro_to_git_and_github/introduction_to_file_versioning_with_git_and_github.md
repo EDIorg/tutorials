@@ -1,12 +1,12 @@
 Introduction to file versioning with Git and GitHub
 ========================================================
-author:  Colin Smith
-date: June 20, 2017
+author: 
+date: 
 autosize: true
 
 <style>
 .small-code pre code {
-  font-size: 1em;
+  font-size: 0.5em;
 .footer {
     color: red; background: #E8E8E8;
     position: fixed; top: 90%;
@@ -20,17 +20,16 @@ autosize: true
 }
 </style>
 
-<img src="introduction_to_file_versioning_with_git_and_github-figure\fig1_git.png"></img>
-
-<div class="footer" style="margin-top:300px;font-size:200%;">
-Environmental Data Initiative</div>
 
 
+<div class="footer" style="margin-top:200px;font-size:150%;">
+<br />Colin Smith<br /><br />Environmental Data Initiative<br /><br />June 20, 2017<br /><br />
+<img src="introduction_to_file_versioning_with_git_and_github-figure\fig1_git.png"></img></div>
 
 
 Tutorial goals
 ========================================================
-
+<br />
 - Understand basic Git concepts and terminology.
 - Apply concepts as Git commands to track versioning of a developing file.
 - Create a GitHub repository and push local content to it.
@@ -40,7 +39,6 @@ Tutorial goals
 
 Why use file versioning?
 ========================================================
-
 - File versioning is useful to developing just about anything, code, a manuscript, or a report.
 - Common to these files is the development process (i.e. draft, edit, save, seek comments, merge comments, save, edit, save, etc.).
 - This process can result in an unwieldly number of file versions that become difficult to track the content of.
@@ -54,9 +52,10 @@ Why use file versioning?
 
 Git concepts (master branch)
 ========================================================
-
+<br />
 <img src="introduction_to_file_versioning_with_git_and_github-figure\Slide1.png" width=500></img>
-
+<br />
+<br />
 - It can be helpful to think of a file history as a tree with a master branch. The master branch is often the production version where others access the most current working copy of your file. Here we have the beginning of the tree. The file has only one version.
 
 
