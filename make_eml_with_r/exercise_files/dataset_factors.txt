@@ -1,0 +1,24 @@
+attributeName	code	definition
+Control	Outflow	Delta outflow
+Control	EC	Electrical conductivity
+Control	E/I	Export:inflow ratio
+Control	None-B	At least one pumping unit below system capacity
+Control	None-W	System capacity
+Control	OMR	Old and Middle River flow
+Control	Salvage	OMR due to salvage trigger
+Control	None-G	Storate
+Control	SJR I/E	San Joaquin River inflow:export ratio
+Control	CVPIA	Central Valley Project Improvement Act
+Control	X2	2 ppt isohaline location in estuary
+Control	JSA	Joint Stipulation Agreement in lieu of OMR
+Control	Vernalis	Vernalis 1:1 ratio
+Control	DS-OMR	Old and Middle River flow for Delta Smelt
+Control	TUC D-1641	Temporary Urgency Change Decision 1641
+Control	DS-Vol	Delta Smelt Voluntary
+Category	F&W	Fish and wildlife
+Category	HSB	Hydraulic salinity barrier
+Category	Infrastructure	System capacity
+Category	AF	Anadromous Fisheries RPA
+Category	DS	Delta Smelt RPA
+HORB	out	Barrier removed
+HORB	in	Barrier in place

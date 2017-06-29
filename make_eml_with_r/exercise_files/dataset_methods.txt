@@ -1,0 +1,8 @@
+Data is a compilation of publicly-available data and information from the following sources:
+
+California Department of Water Resources. Dayflow: an estimate of daily average Delta outflow. 2016. Available: http://www.water.ca.gov/dayflow/
+
+California Department of Water Resources. Estimates of Natural and Unimpaired Flows for the Central Valley of California: Water Years 1922-2014. 2016. Available: https://msb.water.ca.gov/documents/86728/a702a57f-ae7a-41a3-8bff-722e144059d6
+
+California Department of Water Resources. 2017. California Data Exchange Center. Available at: http://cdec.water.ca.gov/
+

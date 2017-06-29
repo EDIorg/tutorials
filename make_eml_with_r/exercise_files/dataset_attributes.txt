@@ -1,0 +1,28 @@
+attributeName	attributeDefinition	formatString	definition	unit	numberType	class
+Date	Calendar date	MM/DD/YYYY				Date
+Control	Most-limiting factor controlling exports (various sources)		Most-limiting factor controlling exports (various sources)			factor
+Category	Category of export limitation shown in temporal analysis		Category of export limitation shown in temporal analysis			factor
+OUT	Net Delta Outflow Index (Dayflow 2016)			cubicFeetPerSecond	real	numeric
+EXPORTS	Total Delta exports (Dayflow 2016)			cubicFeetPerSecond	real	numeric
+HSB	Hydraulic Salinity Barrier (estimate)			cubicFeetPerSecond	real	numeric
+ProjectExports	SWP and CVP south Delta exports only (Dayflow 2016)			cubicFeetPerSecond	real	numeric
+ATE	Additional Theoretical Export (unused export capacity 			cubicFeetPerSecond	real	numeric
+AUO	Additional Uncaptured Outflow (outflow exceeding 			cubicFeetPerSecond	real	numeric
+FW	Reduced export/additional outflow for fish and wildlife 			cubicFeetPerSecond	real	numeric
+OMR	Old and Middle River net daily flow (USGS)			cubicFeetPerSecond	real	numeric
+ESA	Reduced export/additional outflow associated with 			cubicFeetPerSecond	real	numeric
+Both	Reduced export/additional outflow associated with 			cubicFeetPerSecond	real	numeric
+AF	Reduced export/additional outflow associated with			cubicFeetPerSecond	real	numeric
+DS	Reduced export/additional outflow associated with			cubicFeetPerSecond	real	numeric
+DSVOL	Reduced export/additional outflow associated with v			cubicFeetPerSecond	real	numeric
+OMRDIF	Difference between OMR for AF and OMR for DS			cubicFeetPerSecond	real	numeric
+HORB	Head of Old River Barrier status (CA DWR)		Head of Old River Barrier status (CA DWR)			factor
+Vernalis	San Joaquin River near Vernalis average daily flow 			cubicFeetPerSecond	real	numeric
+SystemCapacity	Estimated Export system capacity not 			cubicFeetPerSecond	real	numeric
+SWP	SWP south Delta exports only (Dayflow)			cubicFeetPerSecond	real	numeric
+CVP	CVP south Delta exports only (Dayflow)			cubicFeetPerSecond	real	numeric
+SWPbelowCap	SWP exports how far below system capacity			cubicFeetPerSecond	real	numeric
+CVPbelowCap	CVP exports how far below system capacity			cubicFeetPerSecond	real	numeric
+UnimpairedDeltaIn	Unimpaired Delta inflow based on a monthly regres			cubicFeetPerSecond	real	numeric
+UnimpairedDeltaOut	Unimpaired Delta outflow based on unimpaired Del			cubicFeetPerSecond	real	numeric
+TOT	Total Delta inflow (Dayflow)			cubicFeetPerSecond	real	numeric
