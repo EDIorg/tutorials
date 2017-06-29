@@ -1,0 +1,75 @@
+Introduction to file versioning with Git and GitHub
+========================================================
+author:  Colin Smith
+date: June 20, 2017
+autosize: true
+
+<style>
+.small-code pre code {
+  font-size: 1em;
+.footer {
+    color: red; background: #E8E8E8;
+    position: fixed; top: 90%;
+    text-align:center; width:100%;
+.midcenter {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+}
+}
+}
+</style>
+
+<img src="fig1_git.png"></img>
+
+<div class="footer" style="margin-top:300px;font-size:200%;">
+Environmental Data Initiative</div>
+
+
+
+
+Tutorial goals
+========================================================
+
+- Understand basic Git concepts and terminology.
+- Apply concepts as Git commands to track versioning of a developing file.
+- Create a GitHub repository and push local content to it.
+- Clone a GitHub repository to the local workspace to begin developing.
+- Inspire you to incorporate Git and GitHub into your workflow.
+
+
+Why use file versioning?
+========================================================
+
+- File versioning is useful to developing just about anything, code, a manuscript, or a report.
+- Common to these files is the development process (i.e. draft, edit, save, seek comments, merge comments, save, edit, save, etc.).
+- This process can result in an unwieldly number of file versions that become difficult to track the content of.
+- Git helps by logging a files history as it develops.
+- Git also allows for branching from a common file to test ideas you are uncertain about incorporating into the master document.
+- Git facilitates parallel development with multiple contributors by seamlessly merging the contributions into a single file.
+- Git interfaces with GitHub for collaboration in a user friendly space.
+- Git is free and open source.
+- Let's take a look at some basic Git concepts. These basics will ... GIT ... you a long way.  :)
+
+
+Git concepts (master branch)
+========================================================
+
+<img src="Slide1.png" width=500></img>
+
+- It can be helpful to think of a file history as a tree with a master branch. The master branch is often the production version where others access the most current working copy of your file. Here we have the beginning of the tree. The file has only one version.
+
+
+Slide With Code
+========================================================
+
+```{r}
+summary(cars)
+```
+
+Slide With Plot
+========================================================
+
+```{r, echo=FALSE}
+plot(cars)
+```
