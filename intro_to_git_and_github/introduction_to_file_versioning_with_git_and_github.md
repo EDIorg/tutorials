@@ -167,14 +167,16 @@ Exercise (install and set up Git)
 
 - Once installed you will need to configure Git for use. Provide a user name and email address for Git to tag commits with. This element describes who made the commit.
 
-```{r eval = FALSE}
+
+```r
 $ git config --global user.name "Your Name"
 $ git config --global user.email yourname@example.com
 ```
 
 - Tell Git which text editor you want to use to reply to queries Git asks of you.
 
-```{r eval = FALSE}
+
+```r
 $ git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -nosession"
 ```
 
@@ -196,16 +198,18 @@ $ git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -m
     
     - Open the command line interface for your computer and change the directory to `codebase`.
     
-    ```{r eval = FALSE}
-$ cd ~\Desktop\codebase
-```
+    
+    ```r
+    $ cd ~\Desktop\codebase
+    ```
     
     - Initialize Git for `codebase`. The response is shown after each command.
     
-    ```{r eval = FALSE}
-$ git init
+    
+    ```r
+    $ git init
     ## Initialized empty Git repository in C:/Users/Colin/Desktop/codebase/.git/
-```
+    ```
 
 
 Exercise (tell Git which files to track)
@@ -213,29 +217,31 @@ Exercise (tell Git which files to track)
 
 - Git doesn't automatically track versions of all the files you have in this directory. You tell it what files to track and what files to ignore. If we check the tracking status of files in `codebase` we see `dataproc.txt` is an untracked file.
 
-    ```{r eval = FALSE}
-$ git status
+    
+    ```r
+    $ git status
     ## On branch master
-##
-## Initial commit
-##
-## Untracked files:
-##  (use "git add <file>..." to include in what will be committed)
-##
-##        dataproc.txt
-##
-## nothing added to commit but untracked files present (use "git add" to track)
-```    
+    ##
+    ## Initial commit
+    ##
+    ## Untracked files:
+    ##  (use "git add <file>..." to include in what will be committed)
+    ##
+    ##        dataproc.txt
+    ##
+    ## nothing added to commit but untracked files present (use "git add" to track)
+    ```
 
 - Tell git to track `dataproc.txt` by adding it to staging then committing this file. Provide a commit message to mark this point in the files history.
 
-    ```{r eval = FALSE}
-$ git add dataproc.txt
-$ git commit -m "Begin tracking this file with Git"
-## [master (root-commit) d3c7c48] Begin tracking this file with Git
-##  1 file changed, 5 insertions(+)
-##  create mode 100644 dataproc.txt    
-```
+    
+    ```r
+    $ git add dataproc.txt
+    $ git commit -m "Begin tracking this file with Git"
+    ## [master (root-commit) d3c7c48] Begin tracking this file with Git
+    ##  1 file changed, 5 insertions(+)
+    ##  create mode 100644 dataproc.txt    
+    ```
 
 - The response from Git says the commit was successful.
 
@@ -247,12 +253,13 @@ Exercise (make an edit then commit the change)
 
 - Now add this version to staging and commit.
     
-    ```{r eval = FALSE}
-$ git add dataproc.txt
-$ git commit -m "Replace processing algorithm A with B"
-## [master eaae96c] Replace processing algorithm A with B
-##  1 file changed, 1 insertion(+), 1 deletion(-)
-```    
+    
+    ```r
+    $ git add dataproc.txt
+    $ git commit -m "Replace processing algorithm A with B"
+    ## [master eaae96c] Replace processing algorithm A with B
+    ##  1 file changed, 1 insertion(+), 1 deletion(-)
+    ```
 
 
 Exercise (create a branch and checkout to it)
@@ -262,19 +269,21 @@ Exercise (create a branch and checkout to it)
 
 - Create the development branch `test_algorithm_c`. Does this automatically transfer us into this new branch?
 
-    ```{r eval = FALSE}
-$ git branch test_algorithm_c
-$ git branch
-## * master
-##  test_algorithm_c    
-```    
+    
+    ```r
+    $ git branch test_algorithm_c
+    $ git branch
+    ## * master
+    ##  test_algorithm_c    
+    ```
 
 - Nope! We are still in the master branch as indicated by the asterix next to master. Let's checkout to `test_algorithm_c` and develop our idea.
 
-    ```{r eval = FALSE}
-$ git checkout test_algorithm_c
-## Switched to branch 'test_algorithm_c'
-```    
+    
+    ```r
+    $ git checkout test_algorithm_c
+    ## Switched to branch 'test_algorithm_c'
+    ```
 
 
 Exercise (return to master then edit, stage, and commit)
@@ -286,10 +295,11 @@ Exercise (return to master then edit, stage, and commit)
 
     - Export metadata
 
-    ```{r eval = FALSE}
-$ git checkout master
-## Switched to branch 'master'
-```    
+    
+    ```r
+    $ git checkout master
+    ## Switched to branch 'master'
+    ```
 
 - Make your changes to the file and save.
 
@@ -301,38 +311,38 @@ Exercise (return to master then edit, stage, and commit ... continued)
 
 - This time we'll pass additional arguments to the commit command to return more information about our file changes. This will open the text editor we specified in the configuration stage of our set up, along with extended commit information.
     
-    ```{r eval = FALSE}
-$ git add dataproc.txt
-$ git commit -v dataproc.txt
-## # Please enter the commit message for your changes. Lines starting
-## # with '#' will be ignored, and an empty message aborts the commit.
-## # Explicit paths specified without -i or -o; assuming --only paths...
-## # On branch master
-## # Changes to be committed:
-## #	modified:   dataproc.txt
-## #
-## "Add metadata creation and export functions""
-## # ------------------------ >8 ------------------------
-## # Do not touch the line above.
-## # Everything below will be removed.
-## diff --git a/dataproc.txt b/dataproc.txt
-## index 2253664..bbdf70c 100644
-## --- a/dataproc.txt
-## +++ b/dataproc.txt
-## @@ -2,4 +2,8 @@ Import raw data
-## 
-##  Processing algorithm B
-## 
-## -Export processed data
-## \ No newline at end of file
-## +Export processed data
-## +
-## +Create metadata
-## +
-## +Export metadata
-## \ No newline at end of file
-
-```    
+    
+    ```r
+    $ git add dataproc.txt
+    $ git commit -v dataproc.txt
+    ## # Please enter the commit message for your changes. Lines starting
+    ## # with '#' will be ignored, and an empty message aborts the commit.
+    ## # Explicit paths specified without -i or -o; assuming --only paths...
+    ## # On branch master
+    ## # Changes to be committed:
+    ## #	modified:   dataproc.txt
+    ## #
+    ## "Add metadata creation and export functions""
+    ## # ------------------------ >8 ------------------------
+    ## # Do not touch the line above.
+    ## # Everything below will be removed.
+    ## diff --git a/dataproc.txt b/dataproc.txt
+    ## index 2253664..bbdf70c 100644
+    ## --- a/dataproc.txt
+    ## +++ b/dataproc.txt
+    ## @@ -2,4 +2,8 @@ Import raw data
+    ## 
+    ##  Processing algorithm B
+    ## 
+    ## -Export processed data
+    ## \ No newline at end of file
+    ## +Export processed data
+    ## +
+    ## +Create metadata
+    ## +
+    ## +Export metadata
+    ## \ No newline at end of file
+    ```
 
 - The header of this text block provides instructions. We enter our commit message immediately above the line. Below the line we see the differences between the previous version of `dataproc.txt` and the version we are committing. We see the content of the file with minus symbols denoting lines of text being removed, and plus symbols denoting lines of text being added.
 
@@ -344,10 +354,11 @@ Exercise (check out to the development branch and implement our changes)
 
 - Ok now back to the development branch! Let's work on that idea we were kicking around before. 
 
-    ```{r eval = FALSE}
-$ git checkout test_algorithm_c
-## Switched to branch 'test_algorithm_c'
-```    
+    
+    ```r
+    $ git checkout test_algorithm_c
+    ## Switched to branch 'test_algorithm_c'
+    ```
 
 - Replace processing algorithm B with:
 
@@ -355,12 +366,13 @@ $ git checkout test_algorithm_c
 
 - NOTE: When you open this file you will see it doesn't contain the `Create metadata` and `Export metadata` lines of code we added earlier. This is as expected. Whenever you checkout to a particular version of a file, Git changes to the corresponding version of the file in your repository.
 
-    ```{r eval = FALSE}
-$ git add dataproc.txt
-$ git commit -m "Replace processing algorithm B with C"
-## [test_algorithm_c f34ce23] Replace processing algorithm B with C
-##  1 file changed, 1 insertion(+), 1 deletion(-)
-```    
+    
+    ```r
+    $ git add dataproc.txt
+    $ git commit -m "Replace processing algorithm B with C"
+    ## [test_algorithm_c f34ce23] Replace processing algorithm B with C
+    ##  1 file changed, 1 insertion(+), 1 deletion(-)
+    ```
 
 
 Exercise (merge branches)
@@ -368,15 +380,16 @@ Exercise (merge branches)
 
 - Now we are pretty sure our new idea is worth integrating to the master branch so we merge the development branch with the master. This combines the differences between the two files.
 
-    ```{r eval = FALSE}
-$ git checkout master
-## Switched to branch 'master'
-$ git merge test_algorithm_c
-## Updating eaae96c..f34ce23
-## Fast-forward
-##  dataproc.txt | 2 +-
-##  1 file changed, 1 insertion(+), 1 deletion(-)    
-```    
+    
+    ```r
+    $ git checkout master
+    ## Switched to branch 'master'
+    $ git merge test_algorithm_c
+    ## Updating eaae96c..f34ce23
+    ## Fast-forward
+    ##  dataproc.txt | 2 +-
+    ##  1 file changed, 1 insertion(+), 1 deletion(-)    
+    ```
 
 
 Exercise (revert to previous version or branch from previous version)
@@ -386,39 +399,40 @@ Exercise (revert to previous version or branch from previous version)
 
 - First we need to get the SHA1 number of the version we'd like to revert to.
 
-    ```{r eval = FALSE}
-$ git log
-## commit 101b1dde3de9fe8ddd31cf3292099b5a1fd8d125
-## Merge: 47a084b f34ce23
-## Author: Colin Smith <colin.smith@wisc.edu>
-## Date:   Wed Jun 21 14:23:09 2017 -0500
-## 
-##     Merge branch 'test_algorithm_c'
-##
-## commit 47a084b9d7faed57cb6cb3af5d1b52573e24c6cb
-## Author: Colin Smith <colin.smith@wisc.edu>
-## Date:   Wed Jun 21 14:13:20 2017 -0500
-##
-##     Add metadata creation and export functions
-##
-## commit f34ce2399215ce690117ccf672c2c1f0aa7cad00
-## Author: Colin Smith <colin.smith@wisc.edu>
-## Date:   Wed Jun 21 13:54:39 2017 -0500
-## 
-##     Replace processing algorithm B with C
-##
-## commit eaae96c4df3533527302175717f84f3e2a546c21
-## Author: Colin Smith <colin.smith@wisc.edu>
-## Date:   Wed Jun 21 12:20:30 2017 -0500
-## 
-##     Replace processing algorithm A with B
-## 
-## commit 2c44c88089bfcdaf8c090fa5c6a303ff4aaebece
-## Author: Colin Smith <colin.smith@wisc.edu>
-## Date:   Wed Jun 21 12:19:47 2017 -0500
-##
-##     Begin tracking this file with Git
-```    
+    
+    ```r
+    $ git log
+    ## commit 101b1dde3de9fe8ddd31cf3292099b5a1fd8d125
+    ## Merge: 47a084b f34ce23
+    ## Author: Colin Smith <colin.smith@wisc.edu>
+    ## Date:   Wed Jun 21 14:23:09 2017 -0500
+    ## 
+    ##     Merge branch 'test_algorithm_c'
+    ##
+    ## commit 47a084b9d7faed57cb6cb3af5d1b52573e24c6cb
+    ## Author: Colin Smith <colin.smith@wisc.edu>
+    ## Date:   Wed Jun 21 14:13:20 2017 -0500
+    ##
+    ##     Add metadata creation and export functions
+    ##
+    ## commit f34ce2399215ce690117ccf672c2c1f0aa7cad00
+    ## Author: Colin Smith <colin.smith@wisc.edu>
+    ## Date:   Wed Jun 21 13:54:39 2017 -0500
+    ## 
+    ##     Replace processing algorithm B with C
+    ##
+    ## commit eaae96c4df3533527302175717f84f3e2a546c21
+    ## Author: Colin Smith <colin.smith@wisc.edu>
+    ## Date:   Wed Jun 21 12:20:30 2017 -0500
+    ## 
+    ##     Replace processing algorithm A with B
+    ## 
+    ## commit 2c44c88089bfcdaf8c090fa5c6a303ff4aaebece
+    ## Author: Colin Smith <colin.smith@wisc.edu>
+    ## Date:   Wed Jun 21 12:19:47 2017 -0500
+    ##
+    ##     Begin tracking this file with Git
+    ```
 
 
 Exercise (revert to previous version or branch from previous version ... continued)
@@ -426,14 +440,15 @@ Exercise (revert to previous version or branch from previous version ... continu
 
 - We want the SHA1 corresponding to the commit message `Add metadata creation and export functions`. We then run a few commands to revert and commit these changes.
 
-    ```{r eval = FALSE}
-$ git reset --hard 47a084b9d7faed57cb6cb3af5d1b52573e24c6cb
-## HEAD is now at 47a084b Add metadata creation and export functions    
-$ git reset --soft HEAD@{1}
-$ git commit -m "Revert to 47a084b9d7faed57cb6cb3af5d1b52573e24c6cb"    
-## [master c42b918] Revert to 47a084b9d7faed57cb6cb3af5d1b52573e24c6cb
-##  1 file changed, 1 insertion(+), 1 deletion(-)
-```    
+    
+    ```r
+    $ git reset --hard 47a084b9d7faed57cb6cb3af5d1b52573e24c6cb
+    ## HEAD is now at 47a084b Add metadata creation and export functions    
+    $ git reset --soft HEAD@{1}
+    $ git commit -m "Revert to 47a084b9d7faed57cb6cb3af5d1b52573e24c6cb"    
+    ## [master c42b918] Revert to 47a084b9d7faed57cb6cb3af5d1b52573e24c6cb
+    ##  1 file changed, 1 insertion(+), 1 deletion(-)
+    ```
 
 
 Exercise (view file log graphically)
@@ -443,19 +458,20 @@ Exercise (view file log graphically)
 
 - Let's also look at our history with added graphical output.
 
-    ```{r eval = FALSE}
-$ git log --onelnie --decorate --graph --all
-##-------------------------------------------------------------------
-* c42b918 (HEAD -> master) Revert to 47a084b9d7faed57cb6cb3af5d1b52573e24c6cb
-*   101b1dd Merge branch 'test_algorithm_c'
-|\
-| * f34ce23 (test_algorithm_c) Replace processing algorithm B with C
-* | 47a084b Add metadata creation and export functions
-|/
-* eaae96c Replace processing algorithm A with B
-* 2c44c88 Begin tracking this file with Git
-##-------------------------------------------------------------------    
-```    
+    
+    ```r
+    $ git log --onelnie --decorate --graph --all
+    ##-------------------------------------------------------------------
+    * c42b918 (HEAD -> master) Revert to 47a084b9d7faed57cb6cb3af5d1b52573e24c6cb
+    *   101b1dd Merge branch 'test_algorithm_c'
+    |\
+    | * f34ce23 (test_algorithm_c) Replace processing algorithm B with C
+    * | 47a084b Add metadata creation and export functions
+    |/
+    * eaae96c Replace processing algorithm A with B
+    * 2c44c88 Begin tracking this file with Git
+    ##-------------------------------------------------------------------    
+    ```
 
 - Reading bottom to top, this output is the history of `dataproc.txt` with a graphical representation of commits (*) and branches (|/) . Our revert is the most current commit of this file.
 
@@ -498,12 +514,13 @@ Exercise (link the local and remote repositories)
 - Return to the command line. Ensure your path is to the local repository `~\Desktop\codebase`.
 - Link your local repository with the remote version then check your remote settings.
 
-    ```{r eval = FALSE}
-$ git remote add origin https://github.com/clnsmth/dataproc.git
-$ git remote -v
-## origin  https://github.com/clnsmth/dataproc.git (fetch)
-## origin  https://github.com/clnsmth/dataproc.git (push)    
-```    
+    
+    ```r
+    $ git remote add origin https://github.com/clnsmth/dataproc.git
+    $ git remote -v
+    ## origin  https://github.com/clnsmth/dataproc.git (fetch)
+    ## origin  https://github.com/clnsmth/dataproc.git (push)    
+    ```
 
 - The response tells us that this URL will be used when reading and writting to the remote.
 
@@ -513,18 +530,19 @@ Exercise (push the local repo to the remote repo)
 
 - Now that we have the local and remote linked we can push the local repository to the remote one.
 
-    ```{r eval = FALSE}
-$ git push --all origin master
-## Counting objects: 16, done.
-## Delta compression using up to 4 threads.
-## Compressing objects: 100% (11/11), done.
-## Writing objects: 100% (16/16), 1.54 KiB | 0 bytes/s, done.
-## Total 16 (delta 2), reused 0 (delta 0)
-## remote: Resolving deltas: 100% (2/2), done.
-## To https://github.com/clnsmth/dataproc.git
-##  * [new branch]      master -> master
-##  * [new branch]      test_algorithm_c -> test_algorithm_c
-```    
+    
+    ```r
+    $ git push --all origin master
+    ## Counting objects: 16, done.
+    ## Delta compression using up to 4 threads.
+    ## Compressing objects: 100% (11/11), done.
+    ## Writing objects: 100% (16/16), 1.54 KiB | 0 bytes/s, done.
+    ## Total 16 (delta 2), reused 0 (delta 0)
+    ## remote: Resolving deltas: 100% (2/2), done.
+    ## To https://github.com/clnsmth/dataproc.git
+    ##  * [new branch]      master -> master
+    ##  * [new branch]      test_algorithm_c -> test_algorithm_c
+    ```
 
 - Check that your GitHub updated (you may need to refresh the page).
 
@@ -544,14 +562,15 @@ Exercise (clone a remote repository)
 
 - Run the clone command at the command line.
 
-    ```{r eval = FALSE}
-$ git clone https://github.com/clnsmth/github_collab.git
-## Cloning into 'github_collab'...
-## remote: Counting objects: 14, done.
-## remote: Compressing objects: 100% (11/11), done.
-## remote: Total 14 (delta 4), reused 6 (delta 2), pack-reused 0
-## Unpacking objects: 100% (14/14), done.
-```    
+    
+    ```r
+    $ git clone https://github.com/clnsmth/github_collab.git
+    ## Cloning into 'github_collab'...
+    ## remote: Counting objects: 14, done.
+    ## remote: Compressing objects: 100% (11/11), done.
+    ## remote: Total 14 (delta 4), reused 6 (delta 2), pack-reused 0
+    ## Unpacking objects: 100% (14/14), done.
+    ```
 
 - There you have it! You can now begin contributing to this project!
 
