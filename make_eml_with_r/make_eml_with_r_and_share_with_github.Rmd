@@ -228,7 +228,7 @@ methods_element <- set_methods(methods_file = "C:\\Users\\Colin\\Desktop\\datase
 methods_element
 ```    
 
-- The paragraph breaks have been recognized by `set_methods`. This function also recognizes more detailed formatting from Microsoft Word and other markdown documents. Careful not to use special characters and non-UTF-8 characters and symbols. EML can't handle them. As a result the EML document becomes invalid. So make a consious effort to present your text based inputs to EML with the bare essentials and as little formatting and symbolization as possible.
+- The paragraph breaks have been recognized by `set_methods`. This function also recognizes more detailed formatting from Microsoft Word and other markdown documents. Be careful not to use special characters and non-UTF-8 characters and symbols. EML can't handle them. As a result the EML document becomes invalid. So make a conscious effort to present your text based inputs to EML with the bare essentials and as little formatting and symbolization as possible.
 
 
 ##Exercise (create \<abstract>)
@@ -248,7 +248,7 @@ abstract_element
 
 ##Exercise (create \<keywordSet>)
 
-- To create a \<keywordSet> or multiple instances of \<keywordSet> we'll use the functions `new` and `c`. `new` works similarly to `as` except we define the element name first followed by a series of arguments for the children elements subset under the parent element. `c` contatenates the multiple instances of \<keywordSet> to a _ListOfkeyword_ as required by the slot for \<keywordSet>. If we run `getSlots("keywordSet")` we can see this expected data type. We are going to create 2 \<keywordSet> because each set is selected from a different thesaurus. We will separate our 2 instances of \<keywordSet> with a comma within the `c` function.
+- To create a \<keywordSet> or multiple instances of \<keywordSet> we'll use the functions `new` and `c`. `new` works similarly to `as` except we define the element name first followed by a series of arguments for the children elements subset under the parent element. `c` concatenates the multiple instances of \<keywordSet> to a _ListOfkeyword_ as required by the slot for \<keywordSet>. If we run `getSlots("keywordSet")` we can see this expected data type. We are going to create 2 \<keywordSet> because each set is selected from a different thesaurus. We will separate our 2 instances of \<keywordSet> with a comma within the `c` function.
 
     ```{r eval = FALSE}
 
@@ -421,7 +421,7 @@ write_eml(eml,
     
     - Return to RStudio and paste the URL in the _Repository URL_ field. Be sure to set the parent directory for the local version of this remote repository. Click _Create Project_. This will create a new Git version controlled RStudio project at the specified location. This project is a clone of the remote repository you set up in GitHub. Take a look at the contents. You should see a copy of the README file you created there.
 
-- Now if you return to the RStudio environment you will see some new feature. In the _Environment and History window you should see a tab called Git. This tab contains a GUI interface for you to control version control of files in this projects directory.
+- Now if you return to the RStudio environment you will see some new features. In the _Environment and History window you should see a tab called Git. This tab contains a GUI interface for you to control version control of files in this projects directory.
 
 - Let's begin version control for our R code and supporting .txt files used in this demonstration.
 
