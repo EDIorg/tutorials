@@ -1,1 +1,5 @@
+# Python files that should not be committed
 properties.py
+
+# Jupyter Notebook
+.ipynb_checkpoints
