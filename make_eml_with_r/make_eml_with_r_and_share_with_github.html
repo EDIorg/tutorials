@@ -190,7 +190,7 @@ $(document).ready(function () {
 
 library(EML)</code></pre></li>
 </ul>
-<p>Carl Boettiger, Maëlle Salmon, Claas-Thido Pfaff, Matt Jones, Anna Liu, Karthik Ram, Bryce Mecum, Duncan Temple Lang, Edmund Hart, Matthias Grenié, Ivan Hanigan. (2017, May 11). ropensci/EML:v1.0.3. Zenodo. <a href="http://doi.org/10.5281/zenodo.574208" class="uri">http://doi.org/10.5281/zenodo.574208</a></p>
+<p>Carl Boettiger, MaÃ«lle Salmon, Claas-Thido Pfaff, Matt Jones, Anna Liu, Karthik Ram, Bryce Mecum, Duncan Temple Lang, Edmund Hart, Matthias GreniÃ©, Ivan Hanigan. (2017, May 11). ropensci/EML:v1.0.3. Zenodo. <a href="http://doi.org/10.5281/zenodo.574208" class="uri">http://doi.org/10.5281/zenodo.574208</a></p>
 </div>
 <div id="exercise-create-the-attributelist-element" class="section level2">
 <h2>Exercise (create the &lt;attributeList&gt; element)</h2>
@@ -282,7 +282,7 @@ coverage_element</code></pre></li>
 <pre class="r"><code>methods_element &lt;- set_methods(methods_file = &quot;C:\\Users\\Colin\\Desktop\\dataset_eml\\dataset_methods.txt&quot;)
 
 methods_element</code></pre></li>
-<li><p>The paragraph breaks have been recognized by <code>set_methods</code>. This function also recognizes more detailed formatting from Microsoft Word and other markdown documents. Careful not to use special characters and non-UTF-8 characters and symbols. EML can’t handle them. As a result the EML document becomes invalid. So make a consious effort to present your text based inputs to EML with the bare essentials and as little formatting and symbolization as possible.</p></li>
+<li><p>The paragraph breaks have been recognized by <code>set_methods</code>. This function also recognizes more detailed formatting from Microsoft Word and other markdown documents. Be careful not to use special characters and non-UTF-8 characters and symbols. EML can’t handle them. As a result the EML document becomes invalid. So make a conscious effort to present your text based inputs to EML with the bare essentials and as little formatting and symbolization as possible.</p></li>
 </ul>
 </div>
 <div id="exercise-create-abstract" class="section level2">
@@ -300,7 +300,7 @@ abstract_element</code></pre></li>
 <div id="exercise-create-keywordset" class="section level2">
 <h2>Exercise (create &lt;keywordSet&gt;)</h2>
 <ul>
-<li><p>To create a &lt;keywordSet&gt; or multiple instances of &lt;keywordSet&gt; we’ll use the functions <code>new</code> and <code>c</code>. <code>new</code> works similarly to <code>as</code> except we define the element name first followed by a series of arguments for the children elements subset under the parent element. <code>c</code> contatenates the multiple instances of &lt;keywordSet&gt; to a <em>ListOfkeyword</em> as required by the slot for &lt;keywordSet&gt;. If we run <code>getSlots(&quot;keywordSet&quot;)</code> we can see this expected data type. We are going to create 2 &lt;keywordSet&gt; because each set is selected from a different thesaurus. We will separate our 2 instances of &lt;keywordSet&gt; with a comma within the <code>c</code> function.</p>
+<li><p>To create a &lt;keywordSet&gt; or multiple instances of &lt;keywordSet&gt; we’ll use the functions <code>new</code> and <code>c</code>. <code>new</code> works similarly to <code>as</code> except we define the element name first followed by a series of arguments for the children elements subset under the parent element. <code>c</code> concatenates the multiple instances of &lt;keywordSet&gt; to a <em>ListOfkeyword</em> as required by the slot for &lt;keywordSet&gt;. If we run <code>getSlots(&quot;keywordSet&quot;)</code> we can see this expected data type. We are going to create 2 &lt;keywordSet&gt; because each set is selected from a different thesaurus. We will separate our 2 instances of &lt;keywordSet&gt; with a comma within the <code>c</code> function.</p>
 <pre class="r"><code>keywords_element &lt;- c(new(&quot;keywordSet&quot;,
                       keywordThesaurus = &quot;LTER controlled vocabulary&quot;,
                       keyword = c(&quot;river&quot;,
@@ -409,22 +409,22 @@ contact_element &lt;- new(&quot;contact&quot;,
 <li><p>Initialize this repository with a README file.</p></li>
 <li><p>Click the green <code>create repository</code> button.</p></li>
 </ul></li>
-<li><p>Create a clone of this remote repository on the local workspace of our computer:</p>
+<li><p>Create a clone of this remote repository on the local workspace of our computer. In other words copy the GitHub repository to a location of your choosing on you computer:</p>
 <ul>
 <li><p>In RStudio go to File/New Project and select Version Control</p></li>
 <li><p>Select <em>Checkout a project from a version control repository</em>.</p></li>
 <li><p>Select <em>Git Clone a project from a Git repository</em>.</p></li>
 <li><p>Go back to your GitHub repository and click the green <em>Clone or Download</em> button and copy the URL.</p></li>
-<li><p>Return to RStudio and paste the URL in the <em>Repository URL</em> field. Be sure to set the parent directory for the local version of this remote repository. Click <em>Create Project</em>. This will create a new Git version controlled RStudio project at the specified location. This project is a clone of the remote repository you set up in GitHub. Take a look at the contents. You should see a copy of the README file you created there.</p></li>
+<li><p>Return to RStudio and paste the URL in the <em>Repository URL</em> field. Set the location of where this GitHub repository will be stored on your computer. It will be cloned under the parent directory path you enter in the field <em>Create a project as a subdirectory of</em>. Click <em>Create Project</em>. This will create a new Git version controlled RStudio project in the specified parent directory. This project is a clone of the remote repository you set up in GitHub. Take a look at the contents. You should see a copy of the README file you created there.</p></li>
 </ul></li>
-<li><p>Now if you return to the RStudio environment you will see some new feature. In the _Environment and History window you should see a tab called Git. This tab contains a GUI interface for you to control version control of files in this projects directory.</p></li>
+<li><p>Now if you return to the RStudio environment you will see some new features. In the _Environment and History window you should see a tab called Git. This tab contains a GUI interface for you to control version control of files in this projects directory.</p></li>
 <li><p>Let’s begin version control for our R code and supporting .txt files used in this demonstration.</p></li>
 </ul>
 </div>
 <div id="exercise-move-files-to-project-directory-and-track-with-git" class="section level2">
 <h2>Exercise (move files to project directory and track with Git)</h2>
 <ul>
-<li><p>Copy the files from your directory <em>dataset_eml</em> into your newly cloned _eml_project.</p></li>
+<li><p>Copy the files from your directory <em>dataset_eml</em> into your newly cloned <em>eml_project</em> directory. Remember you specified the location of where the cloned <em>eml_project</em> directory is located in the previous step.</p></li>
 <li><p>Return to RStudio and under the Git tab you should see the list of files you just added with check boxes next to them. Check these for the files you just copied in (i.e. the files you want to version control). Checking these boxes will stage these file version so we can take a snap shot of them and provide an associated commit message.</p></li>
 <li><p>Click the <em>Commit</em> button in the Git tab window, and a new window should pop up with some new GUI features for the files you are about to commit. Explore these features, they are quite nice! When ready provide a commit message for these files. Something along the lines of “Initialize version control with commit message.”</p></li>
 <li><p>Now these files have disappeared from the RStudio Git window. That’s because you have no new saved changes to these files. If you did they would reappear and you could repeat the stage and commit process.</p></li>
