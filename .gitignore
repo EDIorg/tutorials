@@ -1,4 +1,5 @@
 # Python files that should not be committed
+__pycache__
 properties.py
 
 # Jupyter Notebook
