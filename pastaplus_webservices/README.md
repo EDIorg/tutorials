@@ -12,8 +12,10 @@ Access the presentation of [part 2 here](https://docs.google.com/presentation/d/
 
 ## Videos
 
-We will be posting the videos to youtube soon!
+We will be posting the video of part 1 to youtube soon!
+
+Access the video recording of [part 2 here on youtube](https://www.youtube.com/watch?v=IL7IsXGbFAE).
 
 ## Examples
 
-Jupyter note books full of examples are available in this repository.
+Jupyter note books full of examples are available for download in this repository.
