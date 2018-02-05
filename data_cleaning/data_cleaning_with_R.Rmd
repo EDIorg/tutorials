@@ -1,0 +1,76 @@
+---
+title: "Data cleaning with R"
+author: "Environmental Data Initiative"
+date: "February 5, 2018"
+output: html_document
+---
+
+<div align="left">
+<img src="cropped-edi-logo-svg.png" width=150>
+</div>
+
+## Introduction
+
+The example dataset for this exercise may be downloaded here. It is composed of 2 relational tables containing many common issues encountered in the data cleaning process. Each step of this exercise leads you through a solution to these issues and will ultimately result in a clean dataset. While not encompassing all the issues you will see in the data cleaning process, we will highlight some useful packages and their functions for addressing these, which will get you kick started.
+
+Why clean data programatically?
+
+#### Dirty data
+
+Download the data here. The issues contained within these data:
+
+* Item 1
+* Item 2
+
+#### Data cleaners
+
+There are several R libraries useful in data cleaning. The two we will use are `dplyr` and `dataMaid`. Other useful libraries include:
+
+* Library 1
+* Library 2
+
+Install dplyr and dataMaid
+
+## Begin exercise
+
+#### Step 1: Aggregate tables of same content
+
+#### Step 2: Transform table from "long" to "wide"
+
+#### Setp 3: Transform table from "wide" to "long"
+
+#### Setp 4: Detect duplicate observations
+
+#### Setp 5: Detect white spaces (i.e. empty values)
+
+#### Setp 6: Detect duplicate IDs
+
+#### Setp 7: Multiple missing value codes
+
+#### Setp 8: Characters in numeric column
+
+#### Setp 9: Multiple date time formats
+
+#### Setp 10: Inconsistent factor names 
+
+#### Setp 11: Controlling output precision
+
+#### Setp 12: Writing to file
+
+## Resources
+
+Cheatsheets:
+Data Import
+Data Wrangling
+Data Maid
+
+
+
+
+
+
+
+```{r cars, echo=FALSE}
+summary(cars)
+```
+
