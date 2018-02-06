@@ -1,1 +1,0 @@
-This is the test file for creating a new directory in our github tutorial presentation space.
