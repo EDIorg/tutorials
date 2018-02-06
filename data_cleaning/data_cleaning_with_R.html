@@ -129,9 +129,10 @@ $(document).ready(function () {
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>The example dataset for this exercise may be downloaded here. It is composed of 2 relational tables containing many common issues encountered in the data cleaning process. Each step of this exercise leads you through a solution to these issues and will ultimately result in a clean dataset. While not encompassing all the issues you will see in the data cleaning process, we will highlight some useful packages and their functions for addressing these, which will get you kick started.</p>
+<p>Why clean data programatically?</p>
 <div id="dirty-data" class="section level4">
 <h4>Dirty data</h4>
-<p>The issues contained within these data:</p>
+<p>Download the data here. The issues contained within these data:</p>
 <ul>
 <li>Item 1</li>
 <li>Item 2</li>
@@ -139,15 +140,26 @@ $(document).ready(function () {
 </div>
 <div id="data-cleaners" class="section level4">
 <h4>Data cleaners</h4>
-<p>There are several R libraries useful in data cleaning. The two we will use are <code>dplyr</code> and <code>datamaid</code>. Other useful libraries include:</p>
+<p>There are several R libraries useful in data cleaning. The two we will use are <code>dplyr</code> and <code>dataMaid</code>. Other useful libraries include:</p>
 <ul>
 <li>Library 1</li>
 <li>Library 2</li>
 </ul>
+<p>Install dplyr and dataMaid</p>
 </div>
 </div>
 <div id="begin-exercise" class="section level2">
 <h2>Begin exercise</h2>
+<div id="step-n-load-data" class="section level4">
+<h4>Step n: Load data</h4>
+<pre><code>##      speed           dist       
+##  Min.   : 4.0   Min.   :  2.00  
+##  1st Qu.:12.0   1st Qu.: 26.00  
+##  Median :15.0   Median : 36.00  
+##  Mean   :15.4   Mean   : 42.98  
+##  3rd Qu.:19.0   3rd Qu.: 56.00  
+##  Max.   :25.0   Max.   :120.00</code></pre>
+</div>
 <div id="step-1-aggregate-tables-of-same-content" class="section level4">
 <h4>Step 1: Aggregate tables of same content</h4>
 </div>
@@ -183,14 +195,11 @@ $(document).ready(function () {
 </div>
 <div id="setp-12-writing-to-file" class="section level4">
 <h4>Setp 12: Writing to file</h4>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
 </div>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<p>Cheatsheets: Data Import Data Wrangling Data Maid</p>
 </div>
 
 

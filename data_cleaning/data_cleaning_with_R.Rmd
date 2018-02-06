@@ -33,6 +33,13 @@ Install dplyr and dataMaid
 
 ## Begin exercise
 
+#### Step n: Load data
+
+```{r cars, echo=FALSE}
+summary(cars)
+```
+
+
 #### Step 1: Aggregate tables of same content
 
 #### Step 2: Transform table from "long" to "wide"
@@ -64,13 +71,4 @@ Data Import
 Data Wrangling
 Data Maid
 
-
-
-
-
-
-
-```{r cars, echo=FALSE}
-summary(cars)
-```
 
