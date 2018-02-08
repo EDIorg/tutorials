@@ -9,18 +9,13 @@ output: html_document
 <img src="cropped-edi-logo-svg.png" width=150>
 </div>
 
+
 ## Introduction
 
 The example dataset for this exercise may be downloaded here. It is composed of 2 relational tables containing many common issues encountered in the data cleaning process. Each step of this exercise leads you through a solution to these issues and will ultimately result in a clean dataset. While not encompassing all the issues you will see in the data cleaning process, we will highlight some useful packages and their functions for addressing these, which will get you kick started.
 
 Why clean data programatically?
 
-#### Dirty data
-
-Download the data here. The issues contained within these data:
-
-* Item 1
-* Item 2
 
 #### Data cleaners
 
@@ -31,14 +26,73 @@ There are several R libraries useful in data cleaning. The two we will use are `
 
 Install dplyr and dataMaid
 
-## Begin exercise
 
-#### Step n: Load data
+#### Dirty data
 
-```{r cars, echo=FALSE}
-summary(cars)
+Download the data here. The issues contained within these data:
+
+* Item 1
+* Item 2
+
+
+#### Process summary
+
+Summarize process:
+Bind subtables
+Reformat for checking
+Check
+Reformat for publication
+
+
+
+## Exercise
+
+#### Step n: Install and load requisite packages
+
+```
+library(dplyr)
+library(tidyr)
+
+rm(list = ls())
+path <- "C:\\Users\\Colin\\Documents\\EDI\\tutorials\\data_cleaning"
 ```
 
+#### Step n: Load data and look at structure
+
+```
+ta <- read.table(paste0(path,
+                        "\\",
+                        "Table_A.csv"
+                        ),
+                 header = T,
+                 sep = ",",
+                 as.is = T)
+tb <- read.table(paste0(path,
+                        "\\",
+                        "Table_B.csv"),
+                 header = T,
+                 sep = ",",
+                 as.is = T)
+tc <- read.table(paste0(path,
+                        "\\",
+                        "Table_C.csv"),
+                 header = T,
+                 sep = ",",
+                 as.is = T)
+td <- read.table(paste0(path,
+                        "\\",
+                        "Table_D.csv"),
+                 header = T,
+                 sep = ",",
+                 as.is = T)
+                 
+                 
+glimpse(ta)
+glimpse(tb)
+glimpse(tc)
+glimpse(td)
+                 
+```
 
 #### Step 1: Aggregate tables of same content
 
@@ -62,7 +116,14 @@ summary(cars)
 
 #### Setp 11: Controlling output precision
 
+#### Step 12: Reformat to long
+
 #### Setp 12: Writing to file
+
+```
+write.table(table_1)
+
+```
 
 ## Resources
 
@@ -71,4 +132,7 @@ Data Import
 Data Wrangling
 Data Maid
 
+```{r cars, echo=FALSE}
+summary(cars)
+```
 

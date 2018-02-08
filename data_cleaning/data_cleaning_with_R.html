@@ -130,14 +130,6 @@ $(document).ready(function () {
 <h2>Introduction</h2>
 <p>The example dataset for this exercise may be downloaded here. It is composed of 2 relational tables containing many common issues encountered in the data cleaning process. Each step of this exercise leads you through a solution to these issues and will ultimately result in a clean dataset. While not encompassing all the issues you will see in the data cleaning process, we will highlight some useful packages and their functions for addressing these, which will get you kick started.</p>
 <p>Why clean data programatically?</p>
-<div id="dirty-data" class="section level4">
-<h4>Dirty data</h4>
-<p>Download the data here. The issues contained within these data:</p>
-<ul>
-<li>Item 1</li>
-<li>Item 2</li>
-</ul>
-</div>
 <div id="data-cleaners" class="section level4">
 <h4>Data cleaners</h4>
 <p>There are several R libraries useful in data cleaning. The two we will use are <code>dplyr</code> and <code>dataMaid</code>. Other useful libraries include:</p>
@@ -147,11 +139,31 @@ $(document).ready(function () {
 </ul>
 <p>Install dplyr and dataMaid</p>
 </div>
+<div id="dirty-data" class="section level4">
+<h4>Dirty data</h4>
+<p>Download the data here. The issues contained within these data:</p>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
 </div>
-<div id="begin-exercise" class="section level2">
-<h2>Begin exercise</h2>
-<div id="step-n-load-data" class="section level4">
-<h4>Step n: Load data</h4>
+<div id="process-summary" class="section level4">
+<h4>Process summary</h4>
+<p>Summarize process: Bind subtables Reformat for checking Check Reformat for publication</p>
+</div>
+</div>
+<div id="exercise" class="section level2">
+<h2>Exercise</h2>
+<div id="step-n-install-and-load-requisite-packages" class="section level4">
+<h4>Step n: Install and load requisite packages</h4>
+<pre><code>library(dplyr)
+library(tidyr)
+
+rm(list = ls())
+path &lt;- &quot;C:\\Users\\Colin\\Documents\\EDI\\tutorials\\data_cleaning&quot;</code></pre>
+</div>
+<div id="step-n-load-data-and-look-at-structure" class="section level4">
+<h4>Step n: Load data and look at structure</h4>
 <pre><code>##      speed           dist       
 ##  Min.   : 4.0   Min.   :  2.00  
 ##  1st Qu.:12.0   1st Qu.: 26.00  
