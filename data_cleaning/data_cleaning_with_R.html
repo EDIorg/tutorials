@@ -173,40 +173,27 @@ library(&quot;tidyr&quot;)
 library(&quot;dataMaid&quot;)
 </code></pre>
 </div>
-<div id="step-n-load-data-view-structure-devise-plan" class="section level4">
-<h4>Step n: Load data, view structure, devise plan</h4>
-<pre><code>ta &lt;- read.table(paste0(path,
-                        &quot;\\&quot;,
-                        &quot;Table_A.csv&quot;
-                        ),
-                 header = T,
-                 sep = &quot;,&quot;,
-                 as.is = T)
-tb &lt;- read.table(paste0(path,
-                        &quot;\\&quot;,
-                        &quot;Table_B.csv&quot;),
-                 header = T,
-                 sep = &quot;,&quot;,
-                 as.is = T)
-tc &lt;- read.table(paste0(path,
-                        &quot;\\&quot;,
-                        &quot;Table_C.csv&quot;),
-                 header = T,
-                 sep = &quot;,&quot;,
-                 as.is = T)
-td &lt;- read.table(paste0(path,
-                        &quot;\\&quot;,
-                        &quot;Table_D.csv&quot;),
-                 header = T,
-                 sep = &quot;,&quot;,
-                 as.is = T)
-                 
-                 
+<div id="step-n-read-data-tables-view-structure-and-devise-plan" class="section level4">
+<h4>Step n: Read data tables, view structure, and devise plan</h4>
+<pre class="echo"><code># Set working directory
+setwd(&quot;C:\\Users\\Colin\\Documents\\EDI\\tutorials\\data_cleaning&quot;)
+
+# Read data tables
+ta &lt;- read.csv(&quot;Table_A.csv&quot;)
+tb &lt;- read.csv(&quot;Table_B.csv&quot;)
+tc &lt;- read.csv(&quot;Table_C.csv&quot;)
+td &lt;- read.csv(&quot;Table_D.csv&quot;)
+
+# View structure of the data
 glimpse(ta)
 glimpse(tb)
 glimpse(tc)
 glimpse(td)
                  </code></pre>
+<p>Now let’s devise a plan for cleaning these data.</p>
+<p>Tables A, B, and C contain essentially the same meteorological data and in the same column order except: (1) The column names of Table A are different than those of B and C, (2) Table A is missing the flag column of B and C. We can correct these structural issues by changing column names of A and adding the flag column to Table A. Since these tables are only separated by month of observation it makes sense to aggregate these data into a single file and archive a single file rather than 3. Additionally, on the users end, handling 3 files is a bit more cumbersome than only dealing with 1. After aggregating these tables the resultant table will be in wide format allowing us to apply a series of checks to each column of the data table. After applying these checks, and making any adjustments, it will be good for us to reformat this table in to a long format, which is more suitable for archiving because it lends it self to the addition of variables while not changing the data structure. We will then export this adjusted data to a new file.</p>
+<p>Table D is already in wide format, which will alow us to apply checks and modifications to each column of data, but similarly as for the ease of archiving reason stated above, we will want to make this table long, and export these adjusted data to a new file.</p>
+<p>For all cleaning actions performed on these data we will want to save the processing script to track exactly what we did to these data. This will provide provenance of the steps we took to handle these data, for our selves and future data users.</p>
 </div>
 <div id="step-1-aggregate-tables-of-same-content" class="section level4">
 <h4>Step 1: Aggregate tables of same content</h4>

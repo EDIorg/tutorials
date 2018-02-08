@@ -70,7 +70,7 @@ library("dataMaid")
 #### Step n: Read data tables, view structure, and devise plan
 
 
-```
+```{echo = TRUE}
 # Set working directory
 setwd("C:\\Users\\Colin\\Documents\\EDI\\tutorials\\data_cleaning")
 
