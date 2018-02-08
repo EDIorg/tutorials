@@ -1,6 +1,6 @@
 ---
-title: "Data cleaning with R"
-author: "Environmental Data Initiative"
+title: "Cleaning data with R (an exercise)"
+author: "Colin Smith"
 date: "February 5, 2018"
 output: html_document
 ---
@@ -12,87 +12,90 @@ output: html_document
 
 ## Introduction
 
-The example dataset for this exercise may be downloaded here. It is composed of 2 relational tables containing many common issues encountered in the data cleaning process. Each step of this exercise leads you through a solution to these issues and will ultimately result in a clean dataset. While not encompassing all the issues you will see in the data cleaning process, we will highlight some useful packages and their functions for addressing these, which will get you kick started.
+Cleaning data for publication can be a time consuming task with multiple software and tools available to help. Which one to select depends on your level of comfort and the nature of the data you are working with. Here we provide a demonstration of cleaning data programatically with R. This programatic approach is good when you have large data files, many data files, formalized proceedures/methods, allows you to track what happened to the data (provenance tracking).
 
-Why clean data programatically?
+Below is an exercise that presents you with a messy dataset containing common issues found in data and a step by step exercise leading you through a solution to these issues and will ultimately result in a clean dataset. We will use a few key R packages and their functions for addressing these, which will get you kick started.
 
 
-#### Data cleaners
+#### R packages for data cleaning
 
-There are several R libraries useful in data cleaning. The two we will use are `dplyr` and `dataMaid`. Other useful libraries include:
-
-* Library 1
-* Library 2
+There are many R packages useful for data cleaning. We will use `dplyr`, `tidyr` and `dataMaid`. `dplyr` and `tidyr` are good for reformatting data, and `dataMaid` is useful for identifying issues within data columns (e.g. characters in numeric fields, inconsistent use of missing value codes, etc.).
 
 Install dplyr and dataMaid
 
 
-#### Dirty data
+#### The messy dataset
 
-Download the data here. The issues contained within these data:
+For this exercise we've created a messy data set containing many common issues encountered in the data cleaning process. These issues include:
 
-* Item 1
-* Item 2
-
-
-#### Process summary
-
-Summarize process:
-Bind subtables
-Reformat for checking
-Check
-Reformat for publication
-
+* 'Wide' tables that need to be reformatted 'long'.
+* 'Long' tables that need to be reformatted 'wide'.
+* Relational tables with non-unique keys.
+* Duplicate observations (not replicate observations).
+* Empty white spaces.
+* Multiple missing value codes in one column.
+* Characters in numeric columns.
+* Use of multiple datetime formats within a column.
+* Categorical variable isssues (inconsistent naming and cases).
+* Loss of value precision control.
 
 
 ## Exercise
 
+A good strategy for the data cleaning process is to set up your workspace with the tools you will use, gather the data you will be working with and any metadata you have for that data to inform you cleaning approaches, look at the data to see what needs to be done, devise a strategy for cleaning, perform the cleaning, and export the cleaned data to a new file.
+
+#### Step n: Get messy dataset and associated information
+
+Create a working directory for this exercise on you computer. [Download the messey dataset, for this exercise, from EDI's GitHub](https://github.com/EDIorg/tutorials/tree/master/data_cleaning). Right click and 'save as' each table ('Table_A.csv', 'Table_B.csv', 'Table_C.csv', 'Table_D.csv') to your working directory.
+
+Tables A, B, and C contain daily averaged meteorological data for multiple sites logged during December, January, and February 2018, respectively. Table D contains characteristics of the sites.
+
 #### Step n: Install and load requisite packages
 
-```
-library(dplyr)
-library(tidyr)
+Open RStudio. If you don't have R and RStudio installed, [download R and install from here](https://cran.r-project.org/mirrors.html) and [download RStudio and install from here](https://www.rstudio.com/products/rstudio/download/).
 
-rm(list = ls())
-path <- "C:\\Users\\Colin\\Documents\\EDI\\tutorials\\data_cleaning"
-```
-
-#### Step n: Load data and look at structure
+We will be using `dplyr`, `tidyr`, and `dataMaid` for our data cleaning. Install and load these packages.
 
 ```
-ta <- read.table(paste0(path,
-                        "\\",
-                        "Table_A.csv"
-                        ),
-                 header = T,
-                 sep = ",",
-                 as.is = T)
-tb <- read.table(paste0(path,
-                        "\\",
-                        "Table_B.csv"),
-                 header = T,
-                 sep = ",",
-                 as.is = T)
-tc <- read.table(paste0(path,
-                        "\\",
-                        "Table_C.csv"),
-                 header = T,
-                 sep = ",",
-                 as.is = T)
-td <- read.table(paste0(path,
-                        "\\",
-                        "Table_D.csv"),
-                 header = T,
-                 sep = ",",
-                 as.is = T)
-                 
-                 
+# Install packages
+install.packages(c("dplyr", "tidyr", "dataMaid"))
+
+# Load packages
+library("dplyr")
+library("tidyr")
+library("dataMaid")
+
+```
+
+#### Step n: Read data tables, view structure, and devise plan
+
+
+```
+# Set working directory
+setwd("C:\\Users\\Colin\\Documents\\EDI\\tutorials\\data_cleaning")
+
+# Read data tables
+ta <- read.csv("Table_A.csv")
+tb <- read.csv("Table_B.csv")
+tc <- read.csv("Table_C.csv")
+td <- read.csv("Table_D.csv")
+
+# View structure of the data
 glimpse(ta)
 glimpse(tb)
 glimpse(tc)
 glimpse(td)
                  
 ```
+
+Now let's devise a plan for cleaning these data. 
+
+Tables A, B, and C contain essentially the same meteorological data and in the same column order except: (1) The column names of Table A are different than those of B and C, (2) Table A is missing the flag column of B and C. We can correct these structural issues by changing column names of A and adding the flag column to Table A. Since these tables are only separated by month of observation it makes sense to aggregate these data into a single file and archive a single file rather than 3. Additionally, on the users end, handling 3 files is a bit more cumbersome than only dealing with 1. After aggregating these tables the resultant table will be in wide format allowing us to apply a series of checks to each column of the data table. After applying these checks, and making any adjustments, it will be good for us to reformat this table in to a long format, which is more suitable for archiving because it lends it self to the addition of variables while not changing the data structure. We will then export this adjusted data to a new file.
+
+Table D is already in wide format, which will alow us to apply checks and modifications to each column of data, but similarly as for the ease of archiving reason stated above, we will want to make this table long, and export these adjusted data to a new file.
+
+For all cleaning actions performed on these data we will want to save the processing script to track exactly what we did to these data. This will provide provenance of the steps we took to handle these data, for our selves and future data users.
+
 
 #### Step 1: Aggregate tables of same content
 
@@ -119,6 +122,9 @@ glimpse(td)
 #### Step 12: Reformat to long
 
 #### Setp 12: Writing to file
+
+Write cleaned data to new file.
+Create copy of data cleaning script to keep with this file (provenance).
 
 ```
 write.table(table_1)
