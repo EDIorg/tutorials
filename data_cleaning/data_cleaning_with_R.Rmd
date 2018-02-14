@@ -24,7 +24,7 @@ Below is an exercise that presents you with a messy dataset containing several i
 
 #### R packages for cleaning data
 
-There are many R packages and functions useful for cleaning data. We will use `readr`, `dplyr`, `tidyr`, `dataMaid`, and `lubridate`. `readr` simplifies data imports to RStudio. `dplyr` and `tidyr` are good for reformatting data, and `dataMaid` is useful for identifying issues within data columns. `lubridate` helps with dates. We'll use several other functions of base R to solve the data cleaning challenges.
+There are many R packages and functions useful for cleaning data. We will use `tidyverse`, `lubridate`, and `dataMaid`. `tidyverse` simplifies data imports to RStudio and is good for reformatting data. `lubridate` helps with dates, while `dataMaid` is useful for identifying issues within data columns. We'll use several other functions of base R to solve the data cleaning challenges.
 
 
 #### The messy dataset
@@ -67,20 +67,18 @@ Tables A, B, and C contain daily averaged meteorological data for multiple sites
 
 Open RStudio. If you don't have R and RStudio installed, [download R and install from here](https://cran.r-project.org/mirrors.html) and [download RStudio and install from here](https://www.rstudio.com/products/rstudio/download/).
 
-We will be using `readr`, `dplyr`, `tidyr`, `dataMaid`, `lubridate` and some base R functions for our data cleaning exercise.
+We will be using `tidyverse`, `lubridate`, `dataMaid` and some base R functions for our data cleaning exercise.
 
 ```{r eval=FALSE}
 # Install packages
-install.packages(c("readr", "dplyr", "tidyr", "dataMaid", "lubridate"))
+install.packages(c("tidyverse", "lubridate", "dataMaid"))
 ```
 
 ```{r eval=TRUE, message=FALSE}
 # Load packages
-library("readr")
-library("dplyr")
-library("tidyr")
-library("dataMaid")
+library("tidyverse")
 library("lubridate")
+library("dataMaid")
 
 ```
 
@@ -92,7 +90,7 @@ Let's take a closer look at the data before deciding on a set of cleaning operat
 ```{r eval=TRUE}
 # Set the working directory.
 # Substitute the path below with that of your working directory.
-setwd("C:\\Users\\Colin\\Documents\\EDI\\tutorials\\data_cleaning")
+setwd("/Users/csmith/Documents/EDI/tutorials/data_cleaning")
 ```
 
 ```{r eval=TRUE}
@@ -157,6 +155,7 @@ Now let's devise a plan for cleaning these data and prepare them for archiving.
     * Use of multiple missing value codes in a single column. Identify the location of these codes and replace them all with a single missing value code.
     * Characters present in otherwise numerical columns. Find these characters and replace with a missing value code.
     * Case issues. Categorical variables are composed of inconsistent cases. Identify the location of these inconsistencies and replace with a single value.
+    * False categorical variables. Sparse categorical variables may not be valid.
     * Duplicate keys. Look in the relational table for duplicate keys and delete any found.
     * Loss of precision. Double check the precision of numeric fields and make any adjustments necessary to ensure precision is accurately represented in the cleaned dataset.
 * Reformat table 1 from wide to long.
@@ -255,46 +254,89 @@ t1$par <- as.numeric(t1$par)
 
 ```
 
-#### Setp 9: Inconsistent categorical variables
+#### Setp 9: Case issues
 
 ```{r eval=TRUE}
+# Categorical variables are case sensitive. Search for case issues in columns containing categorical variables.
+identifyCaseIssues(t1$id)
+identifyCaseIssues(t1$flag)
+
+# There appears to be issues with the id column. We can fix these by making all categorical variables of the id column lower case.
+t1$id <- tolower(t1$id)
 
 ```
 
-#### Setp 10: Case issues
+
+#### Setp 10: False categorical variables
 
 ```{r eval=TRUE}
+# Some categorical variables may be misspelled. Search for these instances.
+identifyLoners(t1$id)
+
+# These are misspellings of "site_1". Replace these false categorical variables.
+t1$id[t1$id == "seyete_1"] <- "site_1"
+t1$id[t1$id == "site_one"] <- "site_1"
+identifyLoners(t1$id)
 
 ```
 
 #### Step 11: Duplicate keys
 
 ```{r eval=TRUE}
+# Relational tables should not contain duplicate keys. Look in the relational table (table D) for duplicate keys and delete any found.
+index <- duplicated(td$site_id)
+index
 
+# The 4th row contains a duplicate key for site 3. Remove this row.
+td <- td[!index, ]
+td
 ```
 
 #### Setp 12: Precision
 
 ```{r eval=TRUE}
+# Double check the precision of numeric fields and make any adjustments necessary to ensure precision is accurately represented in the cleaned dataset. Precision of table 1 columns should be 2, 1, and 0 decimal places for temp, rel_hum, and par, respectively. Precision of table D should be 0, 0, 3, 3 for elevation, geo_extent_bounding_box, latitude, and longitude, respectively.
+
+# Set precision for table 1
+t1$temp <- round(t1$temp, digits = 2)
+t1$rel_hum <- round(t1$rel_hum, digits = 1)
+t1$par <- round(t1$par, digits = 0)
+
+# Set precision for table D
+td$elevation <- round(td$elevation, digits = 0)
+td$geo_extent_bounding_box <- round(td$geo_extent_bounding_box, digits = 0)
+td$latitude <- round(td$latitude, digits = 3)
+td$longitude <- round(td$longitude, digits = 3)
+
 
 ```
 
 #### Setp 13: Reformat long
 
 ```{r eval=TRUE}
+# Now that we have completed the suite of checks on the variables (columns) of table 1, we will convert this table from wide to long to accomodate possible changes to the variable suite measured at each site.
+t1 <- gather(t1, key = "variable", value = "value", temp, rel_hum, par, flag)
+t1
 
 ```
 
 #### Setp 14: Write to file
 
 ```{r eval=TRUE}
-
+# Export the cleaned data to new .csv files. This preserves your raw data tables.
+write_csv(t1, "Table_1.csv")
+write_csv(td, "Table_2.csv")
 ```
+
+#### Step 15: Store your clean data and processing script together
+
+Now that you've gone through all this effort to clean your data for publication, it is good practice to store your processing script with your clean data. You will want to archive both of these so you and others can understand the methods and transformations applied to these data. Tracking this chain of events is what we call data provenance.
 
 ## Resources
 
-Cheatsheets:
-Data Import
-Data Wrangling
-Data Maid
+Some helpful resources for quickly recalling functions of the packages we used in this exercise, and much more:
+
+[Data import]()
+[Data transformation]()
+[Data maid]()
 

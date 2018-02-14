@@ -138,7 +138,7 @@ $(document).ready(function () {
 <p>Below is an exercise that presents you with a messy dataset containing several issues commonly found in raw data, and step by step instructions to resolve these issues using R.</p>
 <div id="r-packages-for-cleaning-data" class="section level4">
 <h4>R packages for cleaning data</h4>
-<p>There are many R packages and functions useful for cleaning data. We will use <code>readr</code>, <code>dplyr</code>, <code>tidyr</code> and <code>dataMaid</code>. <code>readr</code> simplifies data imports to RStudio. <code>dplyr</code> and <code>tidyr</code> are good for reformatting data, and <code>dataMaid</code> is useful for identifying issues within data columns. We’ll use several other functions of base R to solve the data cleaning challenges.</p>
+<p>There are many R packages and functions useful for cleaning data. We will use <code>tidyverse</code>, <code>lubridate</code>, and <code>dataMaid</code>. <code>tidyverse</code> simplifies data imports to RStudio and is good for reformatting data. <code>lubridate</code> helps with dates, while <code>dataMaid</code> is useful for identifying issues within data columns. We’ll use several other functions of base R to solve the data cleaning challenges.</p>
 </div>
 <div id="the-messy-dataset" class="section level4">
 <h4>The messy dataset</h4>
@@ -178,28 +178,28 @@ $(document).ready(function () {
 <div id="step-2-install-and-load-r-packages" class="section level4">
 <h4>Step 2: Install and load R packages</h4>
 <p>Open RStudio. If you don’t have R and RStudio installed, <a href="https://cran.r-project.org/mirrors.html">download R and install from here</a> and <a href="https://www.rstudio.com/products/rstudio/download/">download RStudio and install from here</a>.</p>
-<p>We will be using <code>readr</code>, <code>dplyr</code>, <code>tidyr</code>, <code>dataMaid</code>, and some base R functions for our data cleaning exercise.</p>
+<p>We will be using <code>tidyverse</code>, <code>lubridate</code>, <code>dataMaid</code> and some base R functions for our data cleaning exercise.</p>
 <pre class="r"><code># Install packages
-install.packages(c(&quot;readr&quot;, &quot;dplyr&quot;, &quot;tidyr&quot;, &quot;dataMaid&quot;))</code></pre>
+install.packages(c(&quot;tidyverse&quot;, &quot;lubridate&quot;, &quot;dataMaid&quot;))</code></pre>
 <pre class="r"><code># Load packages
-library(&quot;readr&quot;)
-library(&quot;dplyr&quot;)
-library(&quot;tidyr&quot;)
+library(&quot;tidyverse&quot;)
+library(&quot;lubridate&quot;)
 library(&quot;dataMaid&quot;)</code></pre>
+<pre><code>## Warning: package 'dataMaid' was built under R version 3.4.2</code></pre>
 </div>
 <div id="step-3-read-data-view-structure-and-devise-plan" class="section level4">
 <h4>Step 3: Read data, view structure, and devise plan</h4>
 <p>Let’s take a closer look at the data before deciding on a set of cleaning operations to implement.</p>
 <pre class="r"><code># Set the working directory.
 # Substitute the path below with that of your working directory.
-setwd(&quot;C:\\Users\\Colin\\Documents\\EDI\\tutorials\\data_cleaning&quot;)</code></pre>
+setwd(&quot;/Users/csmith/Documents/EDI/tutorials/data_cleaning&quot;)</code></pre>
 <pre class="r"><code># Read table A
 # Note: A parsing message reports the data class detected for each column.
 ta &lt;- read_csv(&quot;Table_A.csv&quot;)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   id = col_character(),
-##   date = col_character(),
+##   date = col_date(format = &quot;&quot;),
 ##   temperature = col_double(),
 ##   relative_humidity = col_double(),
 ##   photosynthetically_active_radiation = col_integer()
@@ -220,7 +220,7 @@ tc &lt;- read_csv(&quot;Table_C.csv&quot;)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   id = col_character(),
-##   date = col_date(format = &quot;&quot;),
+##   date = col_character(),
 ##   temp = col_double(),
 ##   rel_hum = col_double(),
 ##   par = col_integer(),
@@ -243,7 +243,7 @@ glimpse(ta)</code></pre>
 <pre><code>## Observations: 93
 ## Variables: 5
 ## $ id                                  &lt;chr&gt; &quot;site_1&quot;, &quot;site_1&quot;, &quot;site_...
-## $ date                                &lt;chr&gt; &quot;2017-12-01&quot;, &quot;2017-12-02&quot;...
+## $ date                                &lt;date&gt; 2017-12-01, 2017-12-02, 2...
 ## $ temperature                         &lt;dbl&gt; -6.53, -8.34, -3.85, -3.13...
 ## $ relative_humidity                   &lt;dbl&gt; 82.5, 76.8, 75.2, 91.7, 10...
 ## $ photosynthetically_active_radiation &lt;int&gt; 443, 207, 373, 417, 228, 4...</code></pre>
@@ -262,7 +262,7 @@ glimpse(tc)</code></pre>
 <pre><code>## Observations: 15
 ## Variables: 6
 ## $ id      &lt;chr&gt; &quot;site_1&quot;, &quot;site_1&quot;, &quot;site_1&quot;, &quot;site_1&quot;, &quot;site_1&quot;, &quot;sit...
-## $ date    &lt;date&gt; 2018-02-01, 2018-02-02, 2018-02-03, 2018-02-04, 2018-...
+## $ date    &lt;chr&gt; &quot;2-1-2018&quot;, &quot;2-2-2018&quot;, &quot;2-3-2018&quot;, &quot;2-4-2018&quot;, &quot;2-5-2...
 ## $ temp    &lt;dbl&gt; -3.10, -0.70, -9.93, -1.72, NA, -9.51, 2.50, -1.85, 0....
 ## $ rel_hum &lt;dbl&gt; 94.2, 78.5, 97.4, 98.1, 77.6, 73.2, 82.2, 72.9, 82.5, ...
 ## $ par     &lt;int&gt; 275, 351, 299, 443, 468, 345, 440, 450, NA, 457, 213, ...
@@ -284,6 +284,7 @@ glimpse(td)</code></pre>
 <ul>
 <li>Rename columns of table A to match tables B and C.</li>
 <li>Add a flag column to table A.</li>
+<li>Convert date column of table C to be of date class. All date columns must be recognized as date class before the aggregation step otherwise dates will be inaccurately presented.</li>
 <li>Aggregate tables.</li>
 </ul></li>
 <li>Check tables 1 and 2 for these common issues:
@@ -292,8 +293,8 @@ glimpse(td)</code></pre>
 <li>Presence of white space leading/trailing values. These white spaces should be removed.</li>
 <li>Use of multiple missing value codes in a single column. Identify the location of these codes and replace them all with a single missing value code.</li>
 <li>Characters present in otherwise numerical columns. Find these characters and replace with a missing value code.</li>
-<li>Use of multiple date formats in a single column. Convert all dates to a single format.</li>
 <li>Case issues. Categorical variables are composed of inconsistent cases. Identify the location of these inconsistencies and replace with a single value.</li>
+<li>False categorical variables. Sparse categorical variables may not be valid.</li>
 <li>Duplicate keys. Look in the relational table for duplicate keys and delete any found.</li>
 <li>Loss of precision. Double check the precision of numeric fields and make any adjustments necessary to ensure precision is accurately represented in the cleaned dataset.</li>
 </ul></li>
@@ -304,6 +305,27 @@ glimpse(td)</code></pre>
 </div>
 <div id="step-4-aggregate-tables" class="section level4">
 <h4>Step 4: Aggregate tables</h4>
+<pre class="r"><code># Before aggregation the date column of the sub-tables must be of date class. Note the date column of table C is of character class. Convert this column to date class using the mdy function (since these dates are in month-day-year format)
+tc$date &lt;- mdy(tc$date)
+tc</code></pre>
+<pre><code>## # A tibble: 15 x 6
+##        id       date  temp rel_hum   par  flag
+##     &lt;chr&gt;     &lt;date&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;
+##  1 site_1 2018-02-01 -3.10    94.2   275  &lt;NA&gt;
+##  2 site_1 2018-02-02 -0.70    78.5   351  &lt;NA&gt;
+##  3 site_1 2018-02-03 -9.93    97.4   299  &lt;NA&gt;
+##  4 site_1 2018-02-04 -1.72    98.1   443  &lt;NA&gt;
+##  5 site_1 2018-02-05    NA    77.6   468  &lt;NA&gt;
+##  6 site_2 2018-02-01 -9.51    73.2   345  &lt;NA&gt;
+##  7 site_2 2018-02-02  2.50    82.2   440     D
+##  8 site_2 2018-02-03 -1.85    72.9   450  &lt;NA&gt;
+##  9 site_2 2018-02-04  0.02    82.5    NA  &lt;NA&gt;
+## 10 site_2 2018-02-05  2.06    76.5   457  &lt;NA&gt;
+## 11 site_3 2018-02-01 -6.82    96.1   213  &lt;NA&gt;
+## 12 site_3 2018-02-02 -6.35    88.4    NA  &lt;NA&gt;
+## 13 site_3 2018-02-03 -0.43    90.7   395  &lt;NA&gt;
+## 14 site_3 2018-02-04 -6.63    73.2   243  &lt;NA&gt;
+## 15 site_3 2018-02-05 -4.09    89.6   310  &lt;NA&gt;</code></pre>
 <pre class="r"><code># Rename columns of table A to match tables B and C
 colnames(ta) &lt;- c(&quot;id&quot;, &quot;date&quot;, &quot;temp&quot;, &quot;rel_hum&quot;, &quot;par&quot;)
 
@@ -312,7 +334,7 @@ ta$flag &lt;- rep(NA_character_, nrow(ta))
 ta</code></pre>
 <pre><code>## # A tibble: 93 x 6
 ##        id       date  temp rel_hum   par  flag
-##     &lt;chr&gt;      &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;
+##     &lt;chr&gt;     &lt;date&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt; &lt;chr&gt;
 ##  1 site_1 2017-12-01 -6.53    82.5   443  &lt;NA&gt;
 ##  2 site_1 2017-12-02 -8.34    76.8   207  &lt;NA&gt;
 ##  3 site_1 2017-12-03 -3.85    75.2   373  &lt;NA&gt;
@@ -329,7 +351,7 @@ t1 &lt;- rbind(ta, tb, tc)
 t1</code></pre>
 <pre><code>## # A tibble: 204 x 6
 ##        id       date  temp rel_hum   par  flag
-##  *  &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+##     &lt;chr&gt;     &lt;date&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
 ##  1 site_1 2017-12-01 -6.53    82.5   443  &lt;NA&gt;
 ##  2 site_1 2017-12-02 -8.34    76.8   207  &lt;NA&gt;
 ##  3 site_1 2017-12-03 -3.85    75.2   373  &lt;NA&gt;
@@ -352,7 +374,7 @@ t1 &lt;- unique.data.frame(t1)
 t1</code></pre>
 <pre><code>## # A tibble: 201 x 6
 ##        id       date  temp rel_hum   par  flag
-##     &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+##     &lt;chr&gt;     &lt;date&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
 ##  1 site_1 2017-12-01 -6.53    82.5   443  &lt;NA&gt;
 ##  2 site_1 2017-12-02 -8.34    76.8   207  &lt;NA&gt;
 ##  3 site_1 2017-12-03 -3.85    75.2   373  &lt;NA&gt;
@@ -367,22 +389,7 @@ t1</code></pre>
 </div>
 <div id="setp-6-white-spaces" class="section level4">
 <h4>Setp 6: White spaces</h4>
-<pre class="r"><code># Identify white spaces around values
-result &lt;- lapply(t1, identifyWhitespace)
-result</code></pre>
-<pre><code>## $id
-## No problems found.
-## $date
-## No problems found.
-## $temp
-## No problems found.
-## $rel_hum
-## No problems found.
-## $par
-## No problems found.
-## $flag
-## No problems found.</code></pre>
-<pre class="r"><code># No problems were found. If there were, we could remove them with the trimws command
+<pre class="r"><code># Remove leading and trailing white spaces around values
 t1 &lt;- as_tibble(lapply(t1, trimws))</code></pre>
 </div>
 <div id="setp-7-missing-value-codes" class="section level4">
@@ -455,31 +462,94 @@ t1$rel_hum &lt;- as.numeric(t1$rel_hum)
 t1$par &lt;- as.numeric(t1$par)</code></pre>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
 </div>
-<div id="setp-9-multiple-date-formats" class="section level4">
-<h4>Setp 9: Multiple date formats</h4>
+<div id="setp-9-case-issues" class="section level4">
+<h4>Setp 9: Case issues</h4>
+<pre class="r"><code># Categorical variables are case sensitive. Search for case issues in columns containing categorical variables.
+identifyCaseIssues(t1$id)</code></pre>
+<pre><code>## Note that there might be case problems with the following levels: site_1, Site_1, SITE_1.</code></pre>
+<pre class="r"><code>identifyCaseIssues(t1$flag)</code></pre>
+<pre><code>## No problems found.</code></pre>
+<pre class="r"><code># There appears to be issues with the id column. We can fix these by making all categorical variables of the id column lower case.
+t1$id &lt;- tolower(t1$id)</code></pre>
 </div>
-<div id="setp-10-inconsistent-categorical-variables" class="section level4">
-<h4>Setp 10: Inconsistent categorical variables</h4>
+<div id="setp-10-false-categorical-variables" class="section level4">
+<h4>Setp 10: False categorical variables</h4>
+<pre class="r"><code># Some categorical variables may be misspelled. Search for these instances.
+identifyLoners(t1$id)</code></pre>
+<pre><code>## Note that the following levels have at most five observations: seyete_1, site_one.</code></pre>
+<pre class="r"><code># These are misspellings of &quot;site_1&quot;. Replace these false categorical variables.
+t1$id[t1$id == &quot;seyete_1&quot;] &lt;- &quot;site_1&quot;
+t1$id[t1$id == &quot;site_one&quot;] &lt;- &quot;site_1&quot;
+identifyLoners(t1$id)</code></pre>
+<pre><code>## No problems found.</code></pre>
 </div>
-<div id="setp-11-case-issues" class="section level4">
-<h4>Setp 11: Case issues</h4>
+<div id="step-11-duplicate-keys" class="section level4">
+<h4>Step 11: Duplicate keys</h4>
+<pre class="r"><code># Relational tables should not contain duplicate keys. Look in the relational table (table D) for duplicate keys and delete any found.
+index &lt;- duplicated(td$site_id)
+index</code></pre>
+<pre><code>## [1] FALSE FALSE FALSE  TRUE</code></pre>
+<pre class="r"><code># The 4th row contains a duplicate key for site 3. Remove this row.
+td &lt;- td[!index, ]
+td</code></pre>
+<pre><code>## # A tibble: 3 x 6
+##   site_id elevation geo_extent_bounding_box latitude longitude
+##     &lt;chr&gt;     &lt;int&gt;                   &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1  site_1       400                     512 46.01706 -87.12057
+## 2  site_2       396                     782 50.00198 -87.58116
+## 3  site_3       396                     534 50.47597 -84.84322
+## # ... with 1 more variables: number_of_years_sampled &lt;int&gt;</code></pre>
 </div>
-<div id="step-12-duplicate-keys" class="section level4">
-<h4>Step 12: Duplicate keys</h4>
+<div id="setp-12-precision" class="section level4">
+<h4>Setp 12: Precision</h4>
+<pre class="r"><code># Double check the precision of numeric fields and make any adjustments necessary to ensure precision is accurately represented in the cleaned dataset. Precision of table 1 columns should be 2, 1, and 0 decimal places for temp, rel_hum, and par, respectively. Precision of table D should be 0, 0, 3, 3 for elevation, geo_extent_bounding_box, latitude, and longitude, respectively.
+
+# Set precision for table 1
+t1$temp &lt;- round(t1$temp, digits = 2)
+t1$rel_hum &lt;- round(t1$rel_hum, digits = 1)
+t1$par &lt;- round(t1$par, digits = 0)
+
+# Set precision for table D
+td$elevation &lt;- round(td$elevation, digits = 0)
+td$geo_extent_bounding_box &lt;- round(td$geo_extent_bounding_box, digits = 0)
+td$latitude &lt;- round(td$latitude, digits = 3)
+td$longitude &lt;- round(td$longitude, digits = 3)</code></pre>
 </div>
-<div id="setp-13-precision" class="section level4">
-<h4>Setp 13: Precision</h4>
+<div id="setp-13-reformat-long" class="section level4">
+<h4>Setp 13: Reformat long</h4>
+<pre class="r"><code># Now that we have completed the suite of checks on the variables (columns) of table 1, we will convert this table from wide to long to accomodate possible changes to the variable suite measured at each site.
+t1 &lt;- gather(t1, key = &quot;variable&quot;, value = &quot;value&quot;, temp, rel_hum, par, flag)
+t1</code></pre>
+<pre><code>## # A tibble: 804 x 4
+##        id       date variable value
+##     &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;
+##  1 site_1 2017-12-01     temp -6.53
+##  2 site_1 2017-12-02     temp -8.34
+##  3 site_1 2017-12-03     temp -3.85
+##  4 site_1 2017-12-04     temp -3.13
+##  5 site_1 2017-12-05     temp -2.11
+##  6 site_1 2017-12-06     temp -1.12
+##  7 site_1 2017-12-07     temp  3.04
+##  8 site_1 2017-12-08     temp  -0.4
+##  9 site_1 2017-12-09     temp -9.08
+## 10 site_1 2017-12-10     temp  1.06
+## # ... with 794 more rows</code></pre>
 </div>
-<div id="setp-14-reformat-long" class="section level4">
-<h4>Setp 14: Reformat long</h4>
+<div id="setp-14-write-to-file" class="section level4">
+<h4>Setp 14: Write to file</h4>
+<pre class="r"><code># Export the cleaned data to new .csv files. This preserves your raw data tables.
+write_csv(t1, &quot;Table_1.csv&quot;)
+write_csv(td, &quot;Table_2.csv&quot;)</code></pre>
 </div>
-<div id="setp-15-write-to-file" class="section level4">
-<h4>Setp 15: Write to file</h4>
+<div id="step-15-store-your-clean-data-and-processing-script-together" class="section level4">
+<h4>Step 15: Store your clean data and processing script together</h4>
+<p>Now that you’ve gone through all this effort to clean your data for publication, it is good practice to store your processing script with your clean data. You will want to archive both of these so you and others can understand the methods and transformations applied to these data. Tracking this chain of events is what we call data provenance.</p>
 </div>
 </div>
 <div id="resources" class="section level2">
 <h2>Resources</h2>
-<p>Cheatsheets: Data Import Data Wrangling Data Maid</p>
+<p>Some helpful resources for quickly recalling functions of the packages we used in this exercise, and much more:</p>
+<p><a href>Data import</a> <a href>Data transformation</a> <a href>Data maid</a></p>
 </div>
 
 
