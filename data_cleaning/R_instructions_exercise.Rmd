@@ -336,7 +336,7 @@ Now that you've gone through all this effort to clean your data for publication,
 
 Some helpful resources for quickly recalling functions of the packages we used in this exercise, and much more:
 
-[Data import]()
-[Data transformation]()
-[Data maid]()
+* [Data import](https://cdn.rawgit.com/EDIorg/tutorials/3611cdf4/data_cleaning/data-import.pdf)
+* [Data transformation](https://github.com/EDIorg/tutorials/blob/master/data_cleaning/data-transformation.pdf)
+* [Data maid](https://cdn.rawgit.com/EDIorg/tutorials/3611cdf4/data_cleaning/cheatsheet_dataMaid.pdf)
 
