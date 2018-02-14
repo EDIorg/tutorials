@@ -6,4 +6,4 @@ Materials:
 * Presentation on YouTube
 * [Presentation slides](https://cdn.rawgit.com/EDIorg/tutorials/3611cdf4/data_cleaning/How_to_clean_and_format_data.pdf)
 * [Cleaning data with OpenRefine (exercise)](https://cdn.rawgit.com/EDIorg/tutorials/3611cdf4/data_cleaning/OpenRefine_instructions_exercise.pdf)
-* [Cleaning data with R (exercise)](https://cdn.rawgit.com/EDIorg/tutorials/3611cdf4/data_cleaning/R_instructions_exercise.html)
+* [Cleaning data with R (exercise)](https://cdn.rawgit.com/EDIorg/tutorials/master/data_cleaning/R_instructions_exercise.html)
