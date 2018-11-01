@@ -92,7 +92,7 @@ install.packages("EML", repos = c("http://packages.ropensci.org", "https://cran.
 library(EML)
 ```    
 
-Carl Boettiger, Maëlle Salmon, Claas-Thido Pfaff, Matt Jones, Anna Liu, Karthik Ram, Bryce Mecum, Duncan Temple Lang, Edmund Hart, Matthias Grenié, Ivan Hanigan. (2017, May 11). ropensci/EML:v1.0.3. Zenodo. http://doi.org/10.5281/zenodo.574208
+Carl Boettiger, Maëlle Salmon, Claas-Thido Pfaff, Matt Jones, Anna Liu, Karthik Ram, Bryce Mecum, Duncan Temple Lang, Edmund Hart, Matthias Grenié, Ivan Hanigan. (2017, May 11). ropensci/EML:v1.0.3. Zenodo. https://doi.org/10.5281/zenodo.574208
 
 
 ##Exercise (create the \<attributeList> element)

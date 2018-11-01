@@ -77,9 +77,9 @@ Main resources for this tutorial (continued):
 Two example data sets from the EDI repository:
 
 
-- "Rainfall manipulation study vegetation data from the Chihuahuan Desert Grassland and Creosote Shrubland at the Sevilleta National Wildlife Refuge, New Mexico (2003-2011)": http://dx.doi.org/10.6073/pasta/361fbce9ce7d4d9530e34b4a8ee3c02e
+- "Rainfall manipulation study vegetation data from the Chihuahuan Desert Grassland and Creosote Shrubland at the Sevilleta National Wildlife Refuge, New Mexico (2003-2011)": https://doi.org/10.6073/pasta/361fbce9ce7d4d9530e34b4a8ee3c02e
 
--  "Eddy covariance data measured at the CAP LTER flux tower located in the west Phoenix, AZ neighborhood of Maryvale from 2011-12-16 through 2012-12-31": http://dx.doi.org/10.6073/pasta/fed17d67583eda16c439216ca40b0669.
+-  "Eddy covariance data measured at the CAP LTER flux tower located in the west Phoenix, AZ neighborhood of Maryvale from 2011-12-16 through 2012-12-31": https://doi.org/10.6073/pasta/fed17d67583eda16c439216ca40b0669.
 
 <br />
 <br />
@@ -106,7 +106,7 @@ Important dplyr functions for data manipulation
 class: small-code
 IMPORT DATA:"Rainfall manipulation study vegetation data from the Chihuahuan Desert Grassland and Creosote Shrubland at the Sevilleta National Wildlife Refuge, New Mexico (2003-2011)"
 <br />
-http://dx.doi.org/10.6073/pasta/361fbce9ce7d4d9530e34b4a8ee3c02e
+https://doi.org/10.6073/pasta/361fbce9ce7d4d9530e34b4a8ee3c02e
 <br />
 <br />
 
@@ -318,7 +318,7 @@ ggplot(t5) + geom_col(mapping = aes(x=Species,y=count_mean,fill=Species)) +
 class: small-code
 IMPORT DATA:"Eddy covariance data measured at the CAP LTER flux tower located in the west Phoenix, AZ neighborhood of Maryvale from 2011-12-16 through 2012-12-31"
 <br />
-http://dx.doi.org/10.6073/pasta/fed17d67583eda16c439216ca40b0669.
+https://doi.org/10.6073/pasta/fed17d67583eda16c439216ca40b0669.
 <br />
 <br />
 
